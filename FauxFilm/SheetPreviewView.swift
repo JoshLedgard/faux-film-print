@@ -43,7 +43,7 @@ private struct PDFPreview: NSViewRepresentable {
 
     func makeNSView(context: Context) -> PDFView {
         let view = PDFView()
-        view.autoScales = true
+        view.autoScales = false
         view.displayMode = .singlePageContinuous
         view.displaysPageBreaks = true
         view.backgroundColor = .underPageBackgroundColor
@@ -51,6 +51,17 @@ private struct PDFPreview: NSViewRepresentable {
     }
 
     func updateNSView(_ view: PDFView, context: Context) {
-        if view.document !== document { view.document = document }
+        guard view.document !== document else { return }
+        let firstLoad = view.document == nil
+        view.document = document
+        // Show a whole sheet at a time; keep the user's zoom once they've seen the preview.
+        DispatchQueue.main.async {
+            if firstLoad, let page = document?.page(at: 0) {
+                let box = page.bounds(for: .mediaBox)
+                let fit = min(view.bounds.width / box.width, view.bounds.height / box.height) * 0.92
+                if fit > 0 { view.scaleFactor = fit }
+            }
+            if let first = document?.page(at: 0), firstLoad { view.go(to: first) }
+        }
     }
 }
