@@ -43,7 +43,11 @@ public struct PrintItem: Identifiable, Sendable {
     public var format: FilmFormat
     public var crop: Crop
     public var look: FilmLook
+    /// How strongly the look is applied, 0…1.
+    public var lookStrength: Double = PrintItem.defaultLookStrength
     public var copies: Int
+
+    public static let defaultLookStrength: Double = 0.8
 
     public init(id: UUID = UUID(), image: CGImage, format: FilmFormat, crop: Crop = Crop(), look: FilmLook = .none, copies: Int = 1) {
         self.id = id
@@ -80,7 +84,7 @@ public enum PrintRenderer {
         ctx.draw(cropped, in: full)
         let opaque = ctx.makeImage()!
 
-        return LookProcessor.apply(item.look, printBrightness: options.printBrightness, to: opaque)
+        return LookProcessor.apply(item.look, strength: item.lookStrength, printBrightness: options.printBrightness, to: opaque)
     }
 
     /// Draws one card. `ctx` uses PDF-style points with y up; `cardRectPt` is the card's

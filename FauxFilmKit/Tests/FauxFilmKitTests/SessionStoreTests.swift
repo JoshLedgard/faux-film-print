@@ -59,3 +59,23 @@ final class SessionStoreTests: XCTestCase {
         XCTAssertEqual(SessionStore.load(from: dir).map(\.id), [b.id])
     }
 }
+
+final class SessionStoreStrengthTests: XCTestCase {
+    func testStrengthRoundTripsAndOldFilesDefault() throws {
+        let dir = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: dir) }
+        var a = PrintItem(image: TestImages.solid(width: 20, height: 20), format: .instaxMini, look: .faded)
+        a.lookStrength = 0.35
+        try SessionStore.save([a], to: dir)
+        XCTAssertEqual(SessionStore.load(from: dir)[0].lookStrength, 0.35, accuracy: 0.0001)
+
+        // A manifest written before strength existed loads with the default.
+        let url = dir.appendingPathComponent("session.json")
+        var json = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: url)) as? [String: Any])
+        var items = try XCTUnwrap(json["items"] as? [[String: Any]])
+        items[0].removeValue(forKey: "lookStrength")
+        json["items"] = items
+        try JSONSerialization.data(withJSONObject: json).write(to: url)
+        XCTAssertEqual(SessionStore.load(from: dir)[0].lookStrength, PrintItem.defaultLookStrength)
+    }
+}

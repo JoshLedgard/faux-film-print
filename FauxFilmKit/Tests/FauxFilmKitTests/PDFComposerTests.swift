@@ -47,10 +47,14 @@ final class SizeTestRulerTests: XCTestCase {
         guard let dir = ProcessInfo.processInfo.environment["FAUXFILM_SAMPLE_DIR"] else { throw XCTSkip("no sample dir") }
         let url = URL(fileURLWithPath: "/System/Library/Desktop Pictures/.thumbnails/Big Sur Coastline.heic")
         let photo = try XCTUnwrap(ImageDecoder.decode(url: url))
-        var items = (0..<8).map { _ in PrintItem(image: photo, format: .instaxMini) }
-        items[1].look = .instant
-        items[2].look = .faded
-        items.append(PrintItem(image: photo, format: .instaxWide))
+        // One sheet: None, then each film at 50 % / 80 % / 100 %.
+        let looks: [(FilmLook, Double)] = [(.none, 1), (.instant, 0.5), (.instant, 0.8), (.instant, 1),
+                                           (.polaroid, 0.5), (.polaroid, 0.8), (.polaroid, 1), (.faded, 0.8), (.faded, 1)]
+        let items = looks.map { look, strength -> PrintItem in
+            var item = PrintItem(image: photo, format: .instaxMini, look: look)
+            item.lookStrength = strength
+            return item
+        }
         let data = PDFComposer.pdf(pages: Paginator.pages(for: items), options: RenderOptions())
         try data.write(to: URL(fileURLWithPath: dir).appendingPathComponent("sample-sheets.pdf"))
         try PDFComposer.sizeTestPDF().write(to: URL(fileURLWithPath: dir).appendingPathComponent("size-test.pdf"))

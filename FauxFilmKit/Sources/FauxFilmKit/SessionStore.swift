@@ -16,6 +16,8 @@ public enum SessionStore {
         var format: FilmFormat
         var crop: Crop
         var look: FilmLook
+        /// Optional so sessions saved before strength existed still load.
+        var lookStrength: Double?
         var copies: Int
         var photo: String
     }
@@ -39,7 +41,8 @@ public enum SessionStore {
                 try writePhoto(item.image, to: url)
             }
             stored.append(StoredItem(id: item.id, format: item.format, crop: item.crop,
-                                     look: item.look, copies: item.copies, photo: name))
+                                     look: item.look, lookStrength: item.lookStrength,
+                                     copies: item.copies, photo: name))
         }
 
         let data = try JSONEncoder().encode(Manifest(items: stored))
@@ -59,7 +62,9 @@ public enum SessionStore {
         let photos = dir.appendingPathComponent("photos", isDirectory: true)
         return manifest.items.compactMap { s in
             guard let image = ImageDecoder.decode(url: photos.appendingPathComponent(s.photo)) else { return nil }
-            return PrintItem(id: s.id, image: image, format: s.format, crop: s.crop, look: s.look, copies: s.copies)
+            var item = PrintItem(id: s.id, image: image, format: s.format, crop: s.crop, look: s.look, copies: s.copies)
+            item.lookStrength = s.lookStrength ?? PrintItem.defaultLookStrength
+            return item
         }
     }
 

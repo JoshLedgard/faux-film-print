@@ -43,6 +43,12 @@ public final class Session {
         mutateSelected { $0.look = look }
     }
 
+    /// Strength of the look (0…1) for every selected photo.
+    public func setLookStrength(_ strength: Double) {
+        let s = min(1, max(0, strength))
+        mutateSelected { $0.lookStrength = s }
+    }
+
     public func setCopies(_ n: Int, for id: UUID) {
         mutate(id) { $0.copies = min(max(n, Paginator.copiesRange.lowerBound), Paginator.copiesRange.upperBound) }
     }

@@ -75,3 +75,19 @@ final class SessionRestoreTests: XCTestCase {
         XCTAssertEqual(s.defaultFormat, .instaxSquare)
     }
 }
+
+@MainActor
+final class BulkLookTests: XCTestCase {
+    func testLookAndStrengthApplyToWholeSelection() {
+        let s = Session()
+        s.add([TestImages.solid(width: 10, height: 10), TestImages.solid(width: 10, height: 10),
+               TestImages.solid(width: 10, height: 10)])
+        s.selection = Set(s.items.prefix(2).map(\.id))
+        s.setLook(.polaroid)
+        s.setLookStrength(1.7)
+        XCTAssertEqual(s.items.map(\.look), [.polaroid, .polaroid, .none])
+        XCTAssertEqual(s.items.map(\.lookStrength), [1, 1, PrintItem.defaultLookStrength])
+        s.setLookStrength(0.4)
+        XCTAssertEqual(s.items[0].lookStrength, 0.4, accuracy: 0.0001)
+    }
+}
