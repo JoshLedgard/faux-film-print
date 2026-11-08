@@ -1,0 +1,93 @@
+import XCTest
+@testable import FauxFilmKit
+
+@MainActor
+final class SessionTests: XCTestCase {
+    let img = TestImages.solid(width: 40, height: 30)
+
+    func testAddUsesDefaultFormat() {
+        let s = Session()
+        s.defaultFormat = .instaxWide
+        s.add([img, img])
+        XCTAssertEqual(s.items.count, 2)
+        XCTAssertTrue(s.items.allSatisfy { $0.format == .instaxWide && $0.copies == 1 && $0.look == .none && $0.crop == Crop() })
+        XCTAssertEqual(s.selection, [s.items[1].id])
+    }
+
+    func testSetFormatResetsCropAndUpdatesDefault() {
+        let s = Session()
+        s.add([img, img])
+        let first = s.items[0].id
+        s.updateCrop(Crop(zoom: 3), for: first)
+        s.updateCrop(Crop(zoom: 2), for: s.items[1].id)
+        s.selection = [first]
+        s.setFormat(.polaroidSquare)
+        XCTAssertEqual(s.items[0].format, .polaroidSquare)
+        XCTAssertEqual(s.items[0].crop, Crop())
+        XCTAssertEqual(s.items[1].format, .instaxMini)
+        XCTAssertEqual(s.items[1].crop.zoom, 2)
+        XCTAssertEqual(s.defaultFormat, .polaroidSquare)
+    }
+
+    func testSetFormatKeepsQuarterTurns() {
+        let s = Session()
+        s.add([img])
+        s.updateCrop(Crop(zoom: 3, quarterTurns: 1), for: s.items[0].id)
+        s.setFormat(.instaxSquare)
+        XCTAssertEqual(s.items[0].crop, Crop(quarterTurns: 1))
+    }
+
+    func testRemoveClearsSelection() {
+        let s = Session()
+        s.add([img, img])
+        let id = s.items[1].id
+        s.remove([id])
+        XCTAssertEqual(s.items.count, 1)
+        XCTAssertFalse(s.selection.contains(id))
+    }
+
+    func testSetLookAndCopies() {
+        let s = Session()
+        s.add([img])
+        s.setLook(.faded)
+        s.setCopies(500, for: s.items[0].id)
+        XCTAssertEqual(s.items[0].look, .faded)
+        XCTAssertEqual(s.items[0].copies, 99)
+    }
+
+    func testPagesDelegatesToPaginator() {
+        let s = Session()
+        s.add([img, img])
+        XCTAssertEqual(s.pages().count, 1)
+        XCTAssertEqual(s.pages()[0].items.compactMap { $0 }.count, 2)
+    }
+}
+
+@MainActor
+final class SessionRestoreTests: XCTestCase {
+    func testRestoreReplacesItemsAndSelectsNothing() {
+        let s = Session()
+        s.add([TestImages.solid(width: 10, height: 10)])
+        let saved = [PrintItem(image: TestImages.solid(width: 10, height: 10), format: .instaxSquare)]
+        s.restore(saved)
+        XCTAssertEqual(s.items.map(\.id), saved.map(\.id))
+        XCTAssertTrue(s.selection.isEmpty)
+        XCTAssertEqual(s.defaultFormat, .instaxSquare)
+    }
+}
+
+@MainActor
+final class BulkLookTests: XCTestCase {
+    func testLookAndStrengthApplyToWholeSelection() {
+        let s = Session()
+        s.add([TestImages.solid(width: 10, height: 10), TestImages.solid(width: 10, height: 10),
+               TestImages.solid(width: 10, height: 10)])
+        s.selection = Set(s.items.prefix(2).map(\.id))
+        s.setLook(.polaroid)
+        s.setLookStrength(1.7)
+        XCTAssertEqual(s.items.map(\.look), [.polaroid, .polaroid, .none])
+        XCTAssertEqual(s.items.map(\.lookStrength), [1, 1, PrintItem.defaultLookStrength])
+        s.setLookStrength(0.4)
+        XCTAssertEqual(s.items[0].lookStrength, 0.4, accuracy: 0.0001)
+    }
+}

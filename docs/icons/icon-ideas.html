@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faux Film Print Icons</title>
+<style>
+  :root {
+    --desk: #e9e6df;
+    --sheet: #ffffff;
+    --ink: #1f1f22;
+    --muted: #6b6a66;
+    --rule: #dcd8cf;
+    --tick: #9a978f;
+    --dock: rgba(255,255,255,0.55);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --desk: #1b1b1d; --sheet: #26262a; --ink: #f1efea; --muted: #a3a19b;
+      --rule: #3a3a3f; --tick: #6e6c67; --dock: rgba(60,60,66,0.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --desk: #1b1b1d; --sheet: #26262a; --ink: #f1efea; --muted: #a3a19b;
+    --rule: #3a3a3f; --tick: #6e6c67; --dock: rgba(60,60,66,0.6);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--desk); color: var(--ink);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+    padding: 40px 16px 120px;
+  }
+  .sheet {
+    max-width: 980px; margin: 0 auto; background: var(--sheet);
+    border-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 12px 40px rgba(0,0,0,.10);
+    padding: 48px 48px 56px; position: relative;
+  }
+  /* crop-mark corners on the sheet, echoing the app's print sheets */
+  .sheet::before, .sheet::after {
+    content: ""; position: absolute; width: 18px; height: 18px; border: 1px solid var(--tick);
+  }
+  .sheet::before { top: 16px; left: 16px; border-right: 0; border-bottom: 0; }
+  .sheet::after { bottom: 16px; right: 16px; border-left: 0; border-top: 0; }
+  header h1 { font-size: 28px; letter-spacing: -0.01em; margin: 0 0 4px; }
+  header p { margin: 0; color: var(--muted); max-width: 60ch; }
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px 32px; margin-top: 40px;
+  }
+  .idea { border-top: 1px solid var(--rule); padding-top: 20px; }
+  .idea .num { font: 600 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); letter-spacing: .08em; }
+  .idea h2 { font-size: 19px; margin: 6px 0 12px; }
+  .hero { width: 220px; height: 220px; display: block; margin: 0 auto 14px; }
+  .sizes { display: flex; align-items: flex-end; justify-content: center; gap: 18px; margin-bottom: 14px; }
+  .sizes figure { margin: 0; text-align: center; }
+  .sizes figcaption { font: 11px ui-monospace, Menlo, monospace; color: var(--muted); margin-top: 4px; }
+  .idea p { margin: 0; color: var(--muted); font-size: 14px; }
+  .dock-wrap { max-width: 980px; margin: 36px auto 0; text-align: center; }
+  .dock-wrap h3 { font-size: 13px; font-weight: 600; color: var(--muted); margin: 0 0 12px; text-transform: uppercase; letter-spacing: .08em; }
+  .dock {
+    display: inline-flex; gap: 14px; padding: 10px 16px; border-radius: 22px;
+    background: var(--dock); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 30px rgba(0,0,0,.18); flex-wrap: wrap; justify-content: center;
+  }
+  .dock svg { width: 64px; height: 64px; display: block; }
+  @media (max-width: 600px) {
+    .sheet { padding: 32px 20px 40px; }
+    .hero { width: 180px; height: 180px; }
+  }
+</style>
+</head>
+<body>
+  <main class="sheet">
+    <header>
+      <h1>Faux Film Print: five app icon ideas</h1>
+      <p>Each idea is shown large, at real macOS sizes (128, 64, 32, 16 pt), and together in a Dock below. The little ones tell you most: a good icon still reads at 16.</p>
+    </header>
+    <section class="grid" id="grid"><article class="idea">
+    <div class="num">IDEA 1</div>
+    <h2>The Mini</h2>
+    <div class="hero"><svg width="100%" height="100%" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg9" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2f7479"></stop><stop offset="1" stop-color="#1b464b"></stop>
+      </linearGradient>
+      <filter id="sh9" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs9" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq9"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg9)" filter="url(#sh9)"></rect>
+    <g clip-path="url(#sq9)"><g transform="rotate(-7 512 492.8148148148148)" filter="url(#cs9)">
+    <rect x="325" y="195" width="374" height="595.6296296296296" rx="20.77777777777778" fill="#F6F4EE"></rect>
+    <svg x="352.7037037037037" y="236.55555555555554" width="318.59259259259255" height="429.4074074074074" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk10" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk10)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g></g>
+  </svg></div>
+    <div class="sizes"><figure><div style="width:128px;height:128px"><svg width="128" height="128" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2f7479"></stop><stop offset="1" stop-color="#1b464b"></stop>
+      </linearGradient>
+      <filter id="sh1" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs1" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq1"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg1)" filter="url(#sh1)"></rect>
+    <g clip-path="url(#sq1)"><g transform="rotate(-7 512 492.8148148148148)" filter="url(#cs1)">
+    <rect x="325" y="195" width="374" height="595.6296296296296" rx="20.77777777777778" fill="#F6F4EE"></rect>
+    <svg x="352.7037037037037" y="236.55555555555554" width="318.59259259259255" height="429.4074074074074" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk2)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g></g>
+  </svg></div><figcaption>128</figcaption></figure><figure><div style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2f7479"></stop><stop offset="1" stop-color="#1b464b"></stop>
+      </linearGradient>
+      <filter id="sh3" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs3" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq3"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg3)" filter="url(#sh3)"></rect>
+    <g clip-path="url(#sq3)"><g transform="rotate(-7 512 492.8148148148148)" filter="url(#cs3)">
+    <rect x="325" y="195" width="374" height="595.6296296296296" rx="20.77777777777778" fill="#F6F4EE"></rect>
+    <svg x="352.7037037037037" y="236.55555555555554" width="318.59259259259255" height="429.4074074074074" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk4)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g></g>
+  </svg></div><figcaption>64</figcaption></figure><figure><div style="width:32px;height:32px"><svg width="32" height="32" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg5" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2f7479"></stop><stop offset="1" stop-color="#1b464b"></stop>
+      </linearGradient>
+      <filter id="sh5" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs5" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq5"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg5)" filter="url(#sh5)"></rect>
+    <g clip-path="url(#sq5)"><g transform="rotate(-7 512 492.8148148148148)" filter="url(#cs5)">
+    <rect x="325" y="195" width="374" height="595.6296296296296" rx="20.77777777777778" fill="#F6F4EE"></rect>
+    <svg x="352.7037037037037" y="236.55555555555554" width="318.59259259259255" height="429.4074074074074" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk6)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g></g>
+  </svg></div><figcaption>32</figcaption></figure><figure><div style="width:16px;height:16px"><svg width="16" height="16" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg7" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2f7479"></stop><stop offset="1" stop-color="#1b464b"></stop>
+      </linearGradient>
+      <filter id="sh7" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs7" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq7"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg7)" filter="url(#sh7)"></rect>
+    <g clip-path="url(#sq7)"><g transform="rotate(-7 512 492.8148148148148)" filter="url(#cs7)">
+    <rect x="325" y="195" width="374" height="595.6296296296296" rx="20.77777777777778" fill="#F6F4EE"></rect>
+    <svg x="352.7037037037037" y="236.55555555555554" width="318.59259259259255" height="429.4074074074074" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk8" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk8)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g></g>
+  </svg></div><figcaption>16</figcaption></figure></div>
+    <p>One tilted Mini card on a deep teal background. It's simple and reads clearly in the Dock: you know straight away it's about instant prints.</p></article><article class="idea">
+    <div class="num">IDEA 2</div>
+    <h2>Real + Faux</h2>
+    <div class="hero"><svg width="100%" height="100%" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg21" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f2b35e"></stop><stop offset="1" stop-color="#d9783f"></stop>
+      </linearGradient>
+      <filter id="sh21" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs21" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq21"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg21)" filter="url(#sh21)"></rect>
+    <g clip-path="url(#sq21)"><g transform="rotate(10 565 485.74074074074076)" filter="url(#cs21)">
+    <rect x="395" y="215" width="340" height="541.4814814814815" rx="18.88888888888889" fill="#F6F4EE"></rect>
+    <rect x="420.18518518518516" y="252.77777777777777" width="289.6296296296297" height="390.3703703703704" rx="3.7777777777777777" fill="#d9d6cf"></rect>
+  </g><g transform="rotate(-6 460 500.74074074074076)" filter="url(#cs21)">
+    <rect x="290" y="230" width="340" height="541.4814814814815" rx="18.88888888888889" fill="#F6F4EE"></rect>
+    <svg x="315.18518518518516" y="267.77777777777777" width="289.6296296296297" height="390.3703703703704" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk22" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk22)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g></g>
+  </svg></div>
+    <div class="sizes"><figure><div style="width:128px;height:128px"><svg width="128" height="128" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg13" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f2b35e"></stop><stop offset="1" stop-color="#d9783f"></stop>
+      </linearGradient>
+      <filter id="sh13" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs13" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq13"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg13)" filter="url(#sh13)"></rect>
+    <g clip-path="url(#sq13)"><g transform="rotate(10 565 485.74074074074076)" filter="url(#cs13)">
+    <rect x="395" y="215" width="340" height="541.4814814814815" rx="18.88888888888889" fill="#F6F4EE"></rect>
+    <rect x="420.18518518518516" y="252.77777777777777" width="289.6296296296297" height="390.3703703703704" rx="3.7777777777777777" fill="#d9d6cf"></rect>
+  </g><g transform="rotate(-6 460 500.74074074074076)" filter="url(#cs13)">
+    <rect x="290" y="230" width="340" height="541.4814814814815" rx="18.88888888888889" fill="#F6F4EE"></rect>
+    <svg x="315.18518518518516" y="267.77777777777777" width="289.6296296296297" height="390.3703703703704" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk14" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk14)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g></g>
+  </svg></div><figcaption>128</figcaption></figure><figure><div style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg15" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f2b35e"></stop><stop offset="1" stop-color="#d9783f"></stop>
+      </linearGradient>
+      <filter id="sh15" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs15" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq15"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg15)" filter="url(#sh15)"></rect>
+    <g clip-path="url(#sq15)"><g transform="rotate(10 565 485.74074074074076)" filter="url(#cs15)">
+    <rect x="395" y="215" width="340" height="541.4814814814815" rx="18.88888888888889" fill="#F6F4EE"></rect>
+    <rect x="420.18518518518516" y="252.77777777777777" width="289.6296296296297" height="390.3703703703704" rx="3.7777777777777777" fill="#d9d6cf"></rect>
+  </g><g transform="rotate(-6 460 500.74074074074076)" filter="url(#cs15)">
+    <rect x="290" y="230" width="340" height="541.4814814814815" rx="18.88888888888889" fill="#F6F4EE"></rect>
+    <svg x="315.18518518518516" y="267.77777777777777" width="289.6296296296297" height="390.3703703703704" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk16" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk16)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g></g>
+  </svg></div><figcaption>64</figcaption></figure><figure><div style="width:32px;height:32px"><svg width="32" height="32" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg17" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f2b35e"></stop><stop offset="1" stop-color="#d9783f"></stop>
+      </linearGradient>
+      <filter id="sh17" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs17" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq17"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg17)" filter="url(#sh17)"></rect>
+    <g clip-path="url(#sq17)"><g transform="rotate(10 565 485.74074074074076)" filter="url(#cs17)">
+    <rect x="395" y="215" width="340" height="541.4814814814815" rx="18.88888888888889" fill="#F6F4EE"></rect>
+    <rect x="420.18518518518516" y="252.77777777777777" width="289.6296296296297" height="390.3703703703704" rx="3.7777777777777777" fill="#d9d6cf"></rect>
+  </g><g transform="rotate(-6 460 500.74074074074076)" filter="url(#cs17)">
+    <rect x="290" y="230" width="340" height="541.4814814814815" rx="18.88888888888889" fill="#F6F4EE"></rect>
+    <svg x="315.18518518518516" y="267.77777777777777" width="289.6296296296297" height="390.3703703703704" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk18" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk18)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g></g>
+  </svg></div><figcaption>32</figcaption></figure><figure><div style="width:16px;height:16px"><svg width="16" height="16" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg19" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f2b35e"></stop><stop offset="1" stop-color="#d9783f"></stop>
+      </linearGradient>
+      <filter id="sh19" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs19" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq19"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg19)" filter="url(#sh19)"></rect>
+    <g clip-path="url(#sq19)"><g transform="rotate(10 565 485.74074074074076)" filter="url(#cs19)">
+    <rect x="395" y="215" width="340" height="541.4814814814815" rx="18.88888888888889" fill="#F6F4EE"></rect>
+    <rect x="420.18518518518516" y="252.77777777777777" width="289.6296296296297" height="390.3703703703704" rx="3.7777777777777777" fill="#d9d6cf"></rect>
+  </g><g transform="rotate(-6 460 500.74074074074076)" filter="url(#cs19)">
+    <rect x="290" y="230" width="340" height="541.4814814814815" rx="18.88888888888889" fill="#F6F4EE"></rect>
+    <svg x="315.18518518518516" y="267.77777777777777" width="289.6296296296297" height="390.3703703703704" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk20" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk20)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g></g>
+  </svg></div><figcaption>16</figcaption></figure></div>
+    <p>Two Minis stacked. The one behind is a plain frame, and the one in front is the photo. It hints at mixing your prints in with real ones.</p></article><article class="idea">
+    <div class="num">IDEA 3</div>
+    <h2>Cut Lines</h2>
+    <div class="hero"><svg width="100%" height="100%" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg33" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#3a3a40"></stop><stop offset="1" stop-color="#1e1e22"></stop>
+      </linearGradient>
+      <filter id="sh33" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs33" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq33"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg33)" filter="url(#sh33)"></rect>
+    <g clip-path="url(#sq33)"><g transform="rotate(0 512 476.8148148148148)" filter="url(#cs33)">
+    <rect x="352" y="222" width="320" height="509.6296296296296" rx="17.77777777777778" fill="#F6F4EE"></rect>
+    <svg x="375.7037037037037" y="257.55555555555554" width="272.59259259259255" height="367.4074074074074" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk34" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk34)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><line x1="260" y1="222" x2="330" y2="222" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="352" y1="130" x2="352" y2="200" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="694" y1="222" x2="764" y2="222" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="672" y1="130" x2="672" y2="200" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="260" y1="731.6296296296296" x2="330" y2="731.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="352" y1="753.6296296296296" x2="352" y2="823.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="694" y1="731.6296296296296" x2="764" y2="731.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="672" y1="753.6296296296296" x2="672" y2="823.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line></g>
+  </svg></div>
+    <div class="sizes"><figure><div style="width:128px;height:128px"><svg width="128" height="128" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg25" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#3a3a40"></stop><stop offset="1" stop-color="#1e1e22"></stop>
+      </linearGradient>
+      <filter id="sh25" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs25" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq25"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg25)" filter="url(#sh25)"></rect>
+    <g clip-path="url(#sq25)"><g transform="rotate(0 512 476.8148148148148)" filter="url(#cs25)">
+    <rect x="352" y="222" width="320" height="509.6296296296296" rx="17.77777777777778" fill="#F6F4EE"></rect>
+    <svg x="375.7037037037037" y="257.55555555555554" width="272.59259259259255" height="367.4074074074074" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk26" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk26)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><line x1="260" y1="222" x2="330" y2="222" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="352" y1="130" x2="352" y2="200" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="694" y1="222" x2="764" y2="222" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="672" y1="130" x2="672" y2="200" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="260" y1="731.6296296296296" x2="330" y2="731.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="352" y1="753.6296296296296" x2="352" y2="823.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="694" y1="731.6296296296296" x2="764" y2="731.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="672" y1="753.6296296296296" x2="672" y2="823.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line></g>
+  </svg></div><figcaption>128</figcaption></figure><figure><div style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg27" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#3a3a40"></stop><stop offset="1" stop-color="#1e1e22"></stop>
+      </linearGradient>
+      <filter id="sh27" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs27" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq27"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg27)" filter="url(#sh27)"></rect>
+    <g clip-path="url(#sq27)"><g transform="rotate(0 512 476.8148148148148)" filter="url(#cs27)">
+    <rect x="352" y="222" width="320" height="509.6296296296296" rx="17.77777777777778" fill="#F6F4EE"></rect>
+    <svg x="375.7037037037037" y="257.55555555555554" width="272.59259259259255" height="367.4074074074074" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk28" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk28)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><line x1="260" y1="222" x2="330" y2="222" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="352" y1="130" x2="352" y2="200" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="694" y1="222" x2="764" y2="222" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="672" y1="130" x2="672" y2="200" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="260" y1="731.6296296296296" x2="330" y2="731.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="352" y1="753.6296296296296" x2="352" y2="823.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="694" y1="731.6296296296296" x2="764" y2="731.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="672" y1="753.6296296296296" x2="672" y2="823.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line></g>
+  </svg></div><figcaption>64</figcaption></figure><figure><div style="width:32px;height:32px"><svg width="32" height="32" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg29" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#3a3a40"></stop><stop offset="1" stop-color="#1e1e22"></stop>
+      </linearGradient>
+      <filter id="sh29" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs29" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq29"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg29)" filter="url(#sh29)"></rect>
+    <g clip-path="url(#sq29)"><g transform="rotate(0 512 476.8148148148148)" filter="url(#cs29)">
+    <rect x="352" y="222" width="320" height="509.6296296296296" rx="17.77777777777778" fill="#F6F4EE"></rect>
+    <svg x="375.7037037037037" y="257.55555555555554" width="272.59259259259255" height="367.4074074074074" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk30" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk30)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><line x1="260" y1="222" x2="330" y2="222" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="352" y1="130" x2="352" y2="200" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="694" y1="222" x2="764" y2="222" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="672" y1="130" x2="672" y2="200" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="260" y1="731.6296296296296" x2="330" y2="731.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="352" y1="753.6296296296296" x2="352" y2="823.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="694" y1="731.6296296296296" x2="764" y2="731.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="672" y1="753.6296296296296" x2="672" y2="823.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line></g>
+  </svg></div><figcaption>32</figcaption></figure><figure><div style="width:16px;height:16px"><svg width="16" height="16" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg31" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#3a3a40"></stop><stop offset="1" stop-color="#1e1e22"></stop>
+      </linearGradient>
+      <filter id="sh31" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs31" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq31"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg31)" filter="url(#sh31)"></rect>
+    <g clip-path="url(#sq31)"><g transform="rotate(0 512 476.8148148148148)" filter="url(#cs31)">
+    <rect x="352" y="222" width="320" height="509.6296296296296" rx="17.77777777777778" fill="#F6F4EE"></rect>
+    <svg x="375.7037037037037" y="257.55555555555554" width="272.59259259259255" height="367.4074074074074" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk32" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk32)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><line x1="260" y1="222" x2="330" y2="222" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="352" y1="130" x2="352" y2="200" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="694" y1="222" x2="764" y2="222" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="672" y1="130" x2="672" y2="200" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="260" y1="731.6296296296296" x2="330" y2="731.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="352" y1="753.6296296296296" x2="352" y2="823.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="694" y1="731.6296296296296" x2="764" y2="731.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="672" y1="753.6296296296296" x2="672" y2="823.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line></g>
+  </svg></div><figcaption>16</figcaption></figure></div>
+    <p>An upright card framed by crop marks on charcoal. It's about what the app does (true-size prints you cut out yourself) and looks crisp and technical.</p></article><article class="idea">
+    <div class="num">IDEA 4</div>
+    <h2>Fresh Print</h2>
+    <div class="hero"><svg width="100%" height="100%" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg45" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#dfe6ee"></stop><stop offset="1" stop-color="#aebccc"></stop>
+      </linearGradient>
+      <filter id="sh45" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs45" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq45"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg45)" filter="url(#sh45)"></rect>
+    <g clip-path="url(#sq45)"><g transform="rotate(0 512 621.1481481481482)" filter="url(#cs45)">
+    <rect x="370" y="395" width="284" height="452.2962962962963" rx="15.777777777777779" fill="#F6F4EE"></rect>
+    <svg x="391.03703703703707" y="426.55555555555554" width="241.92592592592592" height="326.0740740740741" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk46" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk46)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g>
+        <rect x="230" y="250" width="564" height="210" rx="56" fill="#2b2f36" filter="url(#cs45)"></rect>
+        <rect x="230" y="250" width="564" height="70" rx="34" fill="#3a404a"></rect>
+        <rect x="330" y="395" width="364" height="22" rx="11" fill="#14161a"></rect>
+        <circle cx="720" cy="300" r="16" fill="#7fe0a8"></circle></g>
+  </svg></div>
+    <div class="sizes"><figure><div style="width:128px;height:128px"><svg width="128" height="128" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg37" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#dfe6ee"></stop><stop offset="1" stop-color="#aebccc"></stop>
+      </linearGradient>
+      <filter id="sh37" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs37" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq37"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg37)" filter="url(#sh37)"></rect>
+    <g clip-path="url(#sq37)"><g transform="rotate(0 512 621.1481481481482)" filter="url(#cs37)">
+    <rect x="370" y="395" width="284" height="452.2962962962963" rx="15.777777777777779" fill="#F6F4EE"></rect>
+    <svg x="391.03703703703707" y="426.55555555555554" width="241.92592592592592" height="326.0740740740741" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk38" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk38)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g>
+        <rect x="230" y="250" width="564" height="210" rx="56" fill="#2b2f36" filter="url(#cs37)"></rect>
+        <rect x="230" y="250" width="564" height="70" rx="34" fill="#3a404a"></rect>
+        <rect x="330" y="395" width="364" height="22" rx="11" fill="#14161a"></rect>
+        <circle cx="720" cy="300" r="16" fill="#7fe0a8"></circle></g>
+  </svg></div><figcaption>128</figcaption></figure><figure><div style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg39" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#dfe6ee"></stop><stop offset="1" stop-color="#aebccc"></stop>
+      </linearGradient>
+      <filter id="sh39" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs39" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq39"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg39)" filter="url(#sh39)"></rect>
+    <g clip-path="url(#sq39)"><g transform="rotate(0 512 621.1481481481482)" filter="url(#cs39)">
+    <rect x="370" y="395" width="284" height="452.2962962962963" rx="15.777777777777779" fill="#F6F4EE"></rect>
+    <svg x="391.03703703703707" y="426.55555555555554" width="241.92592592592592" height="326.0740740740741" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk40" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk40)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g>
+        <rect x="230" y="250" width="564" height="210" rx="56" fill="#2b2f36" filter="url(#cs39)"></rect>
+        <rect x="230" y="250" width="564" height="70" rx="34" fill="#3a404a"></rect>
+        <rect x="330" y="395" width="364" height="22" rx="11" fill="#14161a"></rect>
+        <circle cx="720" cy="300" r="16" fill="#7fe0a8"></circle></g>
+  </svg></div><figcaption>64</figcaption></figure><figure><div style="width:32px;height:32px"><svg width="32" height="32" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg41" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#dfe6ee"></stop><stop offset="1" stop-color="#aebccc"></stop>
+      </linearGradient>
+      <filter id="sh41" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs41" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq41"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg41)" filter="url(#sh41)"></rect>
+    <g clip-path="url(#sq41)"><g transform="rotate(0 512 621.1481481481482)" filter="url(#cs41)">
+    <rect x="370" y="395" width="284" height="452.2962962962963" rx="15.777777777777779" fill="#F6F4EE"></rect>
+    <svg x="391.03703703703707" y="426.55555555555554" width="241.92592592592592" height="326.0740740740741" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk42" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk42)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g>
+        <rect x="230" y="250" width="564" height="210" rx="56" fill="#2b2f36" filter="url(#cs41)"></rect>
+        <rect x="230" y="250" width="564" height="70" rx="34" fill="#3a404a"></rect>
+        <rect x="330" y="395" width="364" height="22" rx="11" fill="#14161a"></rect>
+        <circle cx="720" cy="300" r="16" fill="#7fe0a8"></circle></g>
+  </svg></div><figcaption>32</figcaption></figure><figure><div style="width:16px;height:16px"><svg width="16" height="16" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg43" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#dfe6ee"></stop><stop offset="1" stop-color="#aebccc"></stop>
+      </linearGradient>
+      <filter id="sh43" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs43" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq43"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg43)" filter="url(#sh43)"></rect>
+    <g clip-path="url(#sq43)"><g transform="rotate(0 512 621.1481481481482)" filter="url(#cs43)">
+    <rect x="370" y="395" width="284" height="452.2962962962963" rx="15.777777777777779" fill="#F6F4EE"></rect>
+    <svg x="391.03703703703707" y="426.55555555555554" width="241.92592592592592" height="326.0740740740741" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk44" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk44)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g>
+        <rect x="230" y="250" width="564" height="210" rx="56" fill="#2b2f36" filter="url(#cs43)"></rect>
+        <rect x="230" y="250" width="564" height="70" rx="34" fill="#3a404a"></rect>
+        <rect x="330" y="395" width="364" height="22" rx="11" fill="#14161a"></rect>
+        <circle cx="720" cy="300" r="16" fill="#7fe0a8"></circle></g>
+  </svg></div><figcaption>16</figcaption></figure></div>
+    <p>A Mini sliding out of a little printer. It's the friendliest of the five and says "this makes prints", though the printer detail gets lost at 16 pt.</p></article><article class="idea">
+    <div class="num">IDEA 5</div>
+    <h2>Sheet of Nine</h2>
+    <div class="hero"><svg width="100%" height="100%" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg89" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2f6b4f"></stop><stop offset="1" stop-color="#1c4433"></stop>
+      </linearGradient>
+      <filter id="sh89" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs89" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq89"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg89)" filter="url(#sh89)"></rect>
+    <g clip-path="url(#sq89)"><g transform="rotate(-5 512 512)">
+           <rect x="262" y="170" width="500" height="647.0588235294117" rx="8" fill="#ffffff" filter="url(#cs89)"></rect>
+           <g transform="rotate(0 391.7037037037037 306.86274509803917)">
+    <rect x="335.7037037037037" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk90" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk90)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g><g transform="rotate(0 512 306.86274509803917)">
+    <rect x="456" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk91" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a6dbe9"></stop><stop offset="1" stop-color="#5ea6c8"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk91)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe8"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3f808c"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#22505c"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 306.86274509803917)">
+    <rect x="576.2962962962963" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk92" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk92)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><g transform="rotate(0 391.7037037037037 493.5294117647058)">
+    <rect x="335.7037037037037" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk93" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk93)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g><g transform="rotate(0 512 493.5294117647058)">
+    <rect x="456" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk94" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk94)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 493.5294117647058)">
+    <rect x="576.2962962962963" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk95" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a6dbe9"></stop><stop offset="1" stop-color="#5ea6c8"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk95)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe8"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3f808c"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#22505c"></path>
+  </svg>
+  </g><g transform="rotate(0 391.7037037037037 680.1960784313726)">
+    <rect x="335.7037037037037" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk96" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk96)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><g transform="rotate(0 512 680.1960784313726)">
+    <rect x="456" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk97" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk97)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 680.1960784313726)">
+    <rect x="576.2962962962963" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk98" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk98)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g>
+         </g></g>
+  </svg></div>
+    <div class="sizes"><figure><div style="width:128px;height:128px"><svg width="128" height="128" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg49" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2f6b4f"></stop><stop offset="1" stop-color="#1c4433"></stop>
+      </linearGradient>
+      <filter id="sh49" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs49" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq49"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg49)" filter="url(#sh49)"></rect>
+    <g clip-path="url(#sq49)"><g transform="rotate(-5 512 512)">
+           <rect x="262" y="170" width="500" height="647.0588235294117" rx="8" fill="#ffffff" filter="url(#cs49)"></rect>
+           <g transform="rotate(0 391.7037037037037 306.86274509803917)">
+    <rect x="335.7037037037037" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk50" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk50)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g><g transform="rotate(0 512 306.86274509803917)">
+    <rect x="456" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk51" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a6dbe9"></stop><stop offset="1" stop-color="#5ea6c8"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk51)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe8"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3f808c"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#22505c"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 306.86274509803917)">
+    <rect x="576.2962962962963" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk52" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk52)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><g transform="rotate(0 391.7037037037037 493.5294117647058)">
+    <rect x="335.7037037037037" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk53" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk53)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g><g transform="rotate(0 512 493.5294117647058)">
+    <rect x="456" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk54" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk54)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 493.5294117647058)">
+    <rect x="576.2962962962963" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk55" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a6dbe9"></stop><stop offset="1" stop-color="#5ea6c8"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk55)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe8"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3f808c"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#22505c"></path>
+  </svg>
+  </g><g transform="rotate(0 391.7037037037037 680.1960784313726)">
+    <rect x="335.7037037037037" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk56" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk56)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><g transform="rotate(0 512 680.1960784313726)">
+    <rect x="456" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk57" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk57)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 680.1960784313726)">
+    <rect x="576.2962962962963" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk58" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk58)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g>
+         </g></g>
+  </svg></div><figcaption>128</figcaption></figure><figure><div style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg59" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2f6b4f"></stop><stop offset="1" stop-color="#1c4433"></stop>
+      </linearGradient>
+      <filter id="sh59" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs59" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq59"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg59)" filter="url(#sh59)"></rect>
+    <g clip-path="url(#sq59)"><g transform="rotate(-5 512 512)">
+           <rect x="262" y="170" width="500" height="647.0588235294117" rx="8" fill="#ffffff" filter="url(#cs59)"></rect>
+           <g transform="rotate(0 391.7037037037037 306.86274509803917)">
+    <rect x="335.7037037037037" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk60" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk60)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g><g transform="rotate(0 512 306.86274509803917)">
+    <rect x="456" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk61" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a6dbe9"></stop><stop offset="1" stop-color="#5ea6c8"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk61)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe8"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3f808c"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#22505c"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 306.86274509803917)">
+    <rect x="576.2962962962963" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk62" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk62)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><g transform="rotate(0 391.7037037037037 493.5294117647058)">
+    <rect x="335.7037037037037" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk63" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk63)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g><g transform="rotate(0 512 493.5294117647058)">
+    <rect x="456" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk64" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk64)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 493.5294117647058)">
+    <rect x="576.2962962962963" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk65" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a6dbe9"></stop><stop offset="1" stop-color="#5ea6c8"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk65)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe8"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3f808c"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#22505c"></path>
+  </svg>
+  </g><g transform="rotate(0 391.7037037037037 680.1960784313726)">
+    <rect x="335.7037037037037" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk66" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk66)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><g transform="rotate(0 512 680.1960784313726)">
+    <rect x="456" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk67" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk67)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 680.1960784313726)">
+    <rect x="576.2962962962963" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk68" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk68)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g>
+         </g></g>
+  </svg></div><figcaption>64</figcaption></figure><figure><div style="width:32px;height:32px"><svg width="32" height="32" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg69" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2f6b4f"></stop><stop offset="1" stop-color="#1c4433"></stop>
+      </linearGradient>
+      <filter id="sh69" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs69" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq69"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg69)" filter="url(#sh69)"></rect>
+    <g clip-path="url(#sq69)"><g transform="rotate(-5 512 512)">
+           <rect x="262" y="170" width="500" height="647.0588235294117" rx="8" fill="#ffffff" filter="url(#cs69)"></rect>
+           <g transform="rotate(0 391.7037037037037 306.86274509803917)">
+    <rect x="335.7037037037037" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk70" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk70)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g><g transform="rotate(0 512 306.86274509803917)">
+    <rect x="456" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk71" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a6dbe9"></stop><stop offset="1" stop-color="#5ea6c8"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk71)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe8"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3f808c"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#22505c"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 306.86274509803917)">
+    <rect x="576.2962962962963" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk72" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk72)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><g transform="rotate(0 391.7037037037037 493.5294117647058)">
+    <rect x="335.7037037037037" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk73" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk73)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g><g transform="rotate(0 512 493.5294117647058)">
+    <rect x="456" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk74" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk74)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 493.5294117647058)">
+    <rect x="576.2962962962963" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk75" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a6dbe9"></stop><stop offset="1" stop-color="#5ea6c8"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk75)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe8"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3f808c"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#22505c"></path>
+  </svg>
+  </g><g transform="rotate(0 391.7037037037037 680.1960784313726)">
+    <rect x="335.7037037037037" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk76" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk76)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><g transform="rotate(0 512 680.1960784313726)">
+    <rect x="456" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk77" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk77)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 680.1960784313726)">
+    <rect x="576.2962962962963" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk78" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk78)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g>
+         </g></g>
+  </svg></div><figcaption>32</figcaption></figure><figure><div style="width:16px;height:16px"><svg width="16" height="16" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg79" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2f6b4f"></stop><stop offset="1" stop-color="#1c4433"></stop>
+      </linearGradient>
+      <filter id="sh79" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs79" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq79"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg79)" filter="url(#sh79)"></rect>
+    <g clip-path="url(#sq79)"><g transform="rotate(-5 512 512)">
+           <rect x="262" y="170" width="500" height="647.0588235294117" rx="8" fill="#ffffff" filter="url(#cs79)"></rect>
+           <g transform="rotate(0 391.7037037037037 306.86274509803917)">
+    <rect x="335.7037037037037" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk80" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk80)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g><g transform="rotate(0 512 306.86274509803917)">
+    <rect x="456" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk81" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a6dbe9"></stop><stop offset="1" stop-color="#5ea6c8"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk81)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe8"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3f808c"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#22505c"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 306.86274509803917)">
+    <rect x="576.2962962962963" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk82" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk82)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><g transform="rotate(0 391.7037037037037 493.5294117647058)">
+    <rect x="335.7037037037037" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk83" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk83)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g><g transform="rotate(0 512 493.5294117647058)">
+    <rect x="456" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk84" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk84)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 493.5294117647058)">
+    <rect x="576.2962962962963" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk85" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a6dbe9"></stop><stop offset="1" stop-color="#5ea6c8"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk85)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe8"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3f808c"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#22505c"></path>
+  </svg>
+  </g><g transform="rotate(0 391.7037037037037 680.1960784313726)">
+    <rect x="335.7037037037037" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk86" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk86)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><g transform="rotate(0 512 680.1960784313726)">
+    <rect x="456" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk87" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk87)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 680.1960784313726)">
+    <rect x="576.2962962962963" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk88" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk88)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g>
+         </g></g>
+  </svg></div><figcaption>16</figcaption></figure></div>
+    <p>A Letter sheet holding a 3 × 3 grid of Minis, which is exactly what the app prints. It's the most literal of the five, and the grid turns into texture when small.</p></article></section>
+  </main>
+
+  <div class="dock-wrap">
+    <h3>In the Dock</h3>
+    <div class="dock" id="dock"><div title="The Mini"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg11" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2f7479"></stop><stop offset="1" stop-color="#1b464b"></stop>
+      </linearGradient>
+      <filter id="sh11" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs11" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq11"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg11)" filter="url(#sh11)"></rect>
+    <g clip-path="url(#sq11)"><g transform="rotate(-7 512 492.8148148148148)" filter="url(#cs11)">
+    <rect x="325" y="195" width="374" height="595.6296296296296" rx="20.77777777777778" fill="#F6F4EE"></rect>
+    <svg x="352.7037037037037" y="236.55555555555554" width="318.59259259259255" height="429.4074074074074" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk12" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk12)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g></g>
+  </svg></div><div title="Real + Faux"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg23" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f2b35e"></stop><stop offset="1" stop-color="#d9783f"></stop>
+      </linearGradient>
+      <filter id="sh23" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs23" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq23"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg23)" filter="url(#sh23)"></rect>
+    <g clip-path="url(#sq23)"><g transform="rotate(10 565 485.74074074074076)" filter="url(#cs23)">
+    <rect x="395" y="215" width="340" height="541.4814814814815" rx="18.88888888888889" fill="#F6F4EE"></rect>
+    <rect x="420.18518518518516" y="252.77777777777777" width="289.6296296296297" height="390.3703703703704" rx="3.7777777777777777" fill="#d9d6cf"></rect>
+  </g><g transform="rotate(-6 460 500.74074074074076)" filter="url(#cs23)">
+    <rect x="290" y="230" width="340" height="541.4814814814815" rx="18.88888888888889" fill="#F6F4EE"></rect>
+    <svg x="315.18518518518516" y="267.77777777777777" width="289.6296296296297" height="390.3703703703704" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk24" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk24)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g></g>
+  </svg></div><div title="Cut Lines"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg35" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#3a3a40"></stop><stop offset="1" stop-color="#1e1e22"></stop>
+      </linearGradient>
+      <filter id="sh35" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs35" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq35"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg35)" filter="url(#sh35)"></rect>
+    <g clip-path="url(#sq35)"><g transform="rotate(0 512 476.8148148148148)" filter="url(#cs35)">
+    <rect x="352" y="222" width="320" height="509.6296296296296" rx="17.77777777777778" fill="#F6F4EE"></rect>
+    <svg x="375.7037037037037" y="257.55555555555554" width="272.59259259259255" height="367.4074074074074" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk36" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk36)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><line x1="260" y1="222" x2="330" y2="222" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="352" y1="130" x2="352" y2="200" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="694" y1="222" x2="764" y2="222" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="672" y1="130" x2="672" y2="200" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="260" y1="731.6296296296296" x2="330" y2="731.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="352" y1="753.6296296296296" x2="352" y2="823.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="694" y1="731.6296296296296" x2="764" y2="731.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line><line x1="672" y1="753.6296296296296" x2="672" y2="823.6296296296296" stroke="#e9e6df" stroke-width="12" stroke-linecap="round"></line></g>
+  </svg></div><div title="Fresh Print"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg47" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#dfe6ee"></stop><stop offset="1" stop-color="#aebccc"></stop>
+      </linearGradient>
+      <filter id="sh47" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs47" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq47"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg47)" filter="url(#sh47)"></rect>
+    <g clip-path="url(#sq47)"><g transform="rotate(0 512 621.1481481481482)" filter="url(#cs47)">
+    <rect x="370" y="395" width="284" height="452.2962962962963" rx="15.777777777777779" fill="#F6F4EE"></rect>
+    <svg x="391.03703703703707" y="426.55555555555554" width="241.92592592592592" height="326.0740740740741" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk48" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk48)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g>
+        <rect x="230" y="250" width="564" height="210" rx="56" fill="#2b2f36" filter="url(#cs47)"></rect>
+        <rect x="230" y="250" width="564" height="70" rx="34" fill="#3a404a"></rect>
+        <rect x="330" y="395" width="364" height="22" rx="11" fill="#14161a"></rect>
+        <circle cx="720" cy="300" r="16" fill="#7fe0a8"></circle></g>
+  </svg></div><div title="Sheet of Nine"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg99" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2f6b4f"></stop><stop offset="1" stop-color="#1c4433"></stop>
+      </linearGradient>
+      <filter id="sh99" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs99" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq99"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg99)" filter="url(#sh99)"></rect>
+    <g clip-path="url(#sq99)"><g transform="rotate(-5 512 512)">
+           <rect x="262" y="170" width="500" height="647.0588235294117" rx="8" fill="#ffffff" filter="url(#cs99)"></rect>
+           <g transform="rotate(0 391.7037037037037 306.86274509803917)">
+    <rect x="335.7037037037037" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk100" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk100)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g><g transform="rotate(0 512 306.86274509803917)">
+    <rect x="456" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk101" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a6dbe9"></stop><stop offset="1" stop-color="#5ea6c8"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk101)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe8"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3f808c"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#22505c"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 306.86274509803917)">
+    <rect x="576.2962962962963" y="217.677559912854" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="230.12200435729847" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk102" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk102)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><g transform="rotate(0 391.7037037037037 493.5294117647058)">
+    <rect x="335.7037037037037" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk103" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk103)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g><g transform="rotate(0 512 493.5294117647058)">
+    <rect x="456" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk104" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk104)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 493.5294117647058)">
+    <rect x="576.2962962962963" y="404.34422657952064" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="416.7886710239651" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk105" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a6dbe9"></stop><stop offset="1" stop-color="#5ea6c8"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk105)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe8"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3f808c"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#22505c"></path>
+  </svg>
+  </g><g transform="rotate(0 391.7037037037037 680.1960784313726)">
+    <rect x="335.7037037037037" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="344" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk106" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c5aa8"></stop><stop offset="1" stop-color="#e79c8a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk106)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#ffdcae"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#3c3664"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#211f3c"></path>
+  </svg>
+  </g><g transform="rotate(0 512 680.1960784313726)">
+    <rect x="456" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="464.2962962962963" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk107" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe8f3"></stop><stop offset="1" stop-color="#8fc4dc"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk107)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fffbe6"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#7fae6a"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4c7a45"></path>
+  </svg>
+  </g><g transform="rotate(0 632.2962962962963 680.1960784313726)">
+    <rect x="576.2962962962963" y="591.0108932461874" width="112" height="178.37037037037035" rx="6.222222222222221" fill="#F6F4EE"></rect>
+    <svg x="584.5925925925926" y="603.4553376906318" width="95.4074074074074" height="128.59259259259258" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk108" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk108)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g>
+         </g></g>
+  </svg></div></div>
+  </div>
+
+
+
+
+</body></html>

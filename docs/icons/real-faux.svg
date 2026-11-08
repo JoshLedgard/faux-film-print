@@ -1,0 +1,29 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg23" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f2b35e"></stop><stop offset="1" stop-color="#d9783f"></stop>
+      </linearGradient>
+      <filter id="sh23" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".28"></feDropShadow>
+      </filter>
+      <filter id="cs23" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".30"></feDropShadow>
+      </filter>
+      <clipPath id="sq23"><rect x="100" y="100" width="824" height="824" rx="185"></rect></clipPath>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg23)" filter="url(#sh23)"></rect>
+    <g clip-path="url(#sq23)"><g transform="rotate(10 565 485.74074074074076)" filter="url(#cs23)">
+    <rect x="395" y="215" width="340" height="541.4814814814815" rx="18.88888888888889" fill="#F6F4EE"></rect>
+    <rect x="420.18518518518516" y="252.77777777777777" width="289.6296296296297" height="390.3703703703704" rx="3.7777777777777777" fill="#d9d6cf"></rect>
+  </g><g transform="rotate(-6 460 500.74074074074076)" filter="url(#cs23)">
+    <rect x="290" y="230" width="340" height="541.4814814814815" rx="18.88888888888889" fill="#F6F4EE"></rect>
+    <svg x="315.18518518518516" y="267.77777777777777" width="289.6296296296297" height="390.3703703703704" viewBox="0 0 100 135" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sk24" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8cf95"></stop><stop offset="1" stop-color="#e8806a"></stop></linearGradient></defs>
+    <rect width="100" height="135" fill="url(#sk24)"></rect>
+    <circle cx="66" cy="54" r="15" fill="#fff3d1"></circle>
+    <path d="M0 96 Q28 72 54 90 T100 80 V135 H0Z" fill="#9a5d78"></path>
+    <path d="M0 114 Q38 94 68 110 T100 104 V135 H0Z" fill="#4e3a5c"></path>
+  </svg>
+  </g></g>
+  </svg>
