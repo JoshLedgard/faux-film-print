@@ -143,7 +143,7 @@ public enum PDFComposer {
         var mediaBox = CGRect(x: 0, y: 0, width: MM.toPoints(paper.width), height: MM.toPoints(paper.height))
         guard let consumer = CGDataConsumer(data: data as CFMutableData),
               let ctx = CGContext(consumer: consumer, mediaBox: &mediaBox, [
-                  kCGPDFContextCreator: "Faux Film",
+                  kCGPDFContextCreator: "Faux Film Print",
               ] as CFDictionary)
         else { return Data() }
         draw(ctx)

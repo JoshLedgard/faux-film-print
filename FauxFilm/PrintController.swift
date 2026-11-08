@@ -49,7 +49,7 @@ enum PrintController {
 
         let panel = NSSavePanel()
         panel.allowedContentTypes = [.pdf]
-        panel.nameFieldStringValue = "Faux Film Sheets.pdf"
+        panel.nameFieldStringValue = "Faux Film Print Sheets.pdf"
         panel.message = "When you print this PDF, choose Scale 100% — not “Scale to Fit” — so prints stay true size."
         guard panel.runModal() == .OK, let url = panel.url else { return }
 
@@ -99,7 +99,7 @@ enum PrintController {
             alert.messageText = "Your printer can't print this close to the edge"
             if rows > 0 {
                 let fits = SheetLayout.make(format: format, maxRows: rows).slots.count
-                alert.informativeText = "To keep \(format.displayName) prints at true size, Faux Film can fit \(fits) per sheet instead of \(full.slots.count). If your printer has a borderless paper option, choosing it as the default paper may let all \(full.slots.count) fit."
+                alert.informativeText = "To keep \(format.displayName) prints at true size, Faux Film Print can fit \(fits) per sheet instead of \(full.slots.count). If your printer has a borderless paper option, choosing it as the default paper may let all \(full.slots.count) fit."
                 alert.addButton(withTitle: "Print \(fits) per Sheet")
                 alert.addButton(withTitle: "Cancel")
                 guard alert.runModal() == .alertFirstButtonReturn else { return nil }
@@ -123,7 +123,7 @@ enum PrintController {
             alert.runModal()
             return
         }
-        operation.jobTitle = "Faux Film"
+        operation.jobTitle = "Faux Film Print"
         operation.showsPrintPanel = true
         operation.showsProgressPanel = true
         // Never let the panel scale the page: prints must stay true size.

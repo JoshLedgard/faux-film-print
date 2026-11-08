@@ -1,4 +1,4 @@
-# Faux Film
+# Faux Film Print
 
 A macOS app that turns photos into true-size instant-film prints (Instax Mini, Instax Square,
 Instax Wide, Polaroid Square) and lays them out on US Letter sheets with crop marks for
@@ -31,10 +31,10 @@ cd FauxFilmKit && swift test
 3. Drag to move the photo in its frame, pinch or use the slider to zoom, and **Rotate** if needed.
 4. Toggle **Sheets** to preview the printed pages.
 5. **File ▸ Print Size Test** first. Print it on plain paper and check it against a real print.
-6. **Print** at 100%. If your printer can't reach close enough to the paper edge, Faux Film prints
+6. **Print** at 100%. If your printer can't reach close enough to the paper edge, Faux Film Print prints
    fewer per sheet instead of shrinking anything.
 
-Your photos and their crops are saved automatically and come back next time. Faux Film keeps
+Your photos and their crops are saved automatically and come back next time. Faux Film Print keeps
 its own copy of each photo in its private storage folder and never changes your originals.
 Removing a photo from the list deletes that copy. You can also click any print in the
 **Sheets** preview to jump to its crop editor.

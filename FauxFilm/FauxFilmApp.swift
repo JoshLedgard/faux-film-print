@@ -6,7 +6,7 @@ struct FauxFilmApp: App {
     @State private var model = AppModel()
 
     var body: some Scene {
-        Window("Faux Film", id: "main") {
+        Window("Faux Film Print", id: "main") {
             ContentView()
                 .environment(model)
                 .task { await model.loadSavedSession() }

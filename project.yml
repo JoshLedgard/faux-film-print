@@ -28,13 +28,13 @@ targets:
     info:
       path: FauxFilm/Info.plist
       properties:
-        CFBundleDisplayName: Faux Film
+        CFBundleDisplayName: Faux Film Print
         LSApplicationCategoryType: public.app-category.photography
         NSHumanReadableCopyright: ""
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.joshledgard.fauxfilm
-        PRODUCT_NAME: Faux Film
+        PRODUCT_NAME: Faux Film Print
         CODE_SIGN_IDENTITY: "-"
         CODE_SIGN_STYLE: Manual
         DEVELOPMENT_TEAM: ""
