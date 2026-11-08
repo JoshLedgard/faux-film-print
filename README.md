@@ -34,6 +34,11 @@ cd FauxFilmKit && swift test
 6. **Print** at 100%. If your printer can't reach close enough to the paper edge, Faux Film prints
    fewer per sheet instead of shrinking anything.
 
+Your photos and their crops are saved automatically and come back next time. Faux Film keeps
+its own copy of each photo in its private storage folder and never changes your originals.
+Removing a photo from the list deletes that copy. You can also click any print in the
+**Sheets** preview to jump to its crop editor.
+
 Settings (⌘,) has print brightness (inkjet prints often come out darker than the screen),
 corner rounding guides and an optional border texture.
 
