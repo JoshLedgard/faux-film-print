@@ -43,15 +43,20 @@ enum PrintController {
 
     static func exportPDF(model: AppModel) async {
         guard !model.session.items.isEmpty else { return }
+        // Same printable-area check as printing (against the default printer), so the
+        // PDF is safe to print from Preview too.
+        guard let maxRows = rowsThatFit(model: model, info: printInfo()) else { return }
+
         let panel = NSSavePanel()
         panel.allowedContentTypes = [.pdf]
         panel.nameFieldStringValue = "Faux Film Sheets.pdf"
+        panel.message = "When you print this PDF, choose Scale 100% — not “Scale to Fit” — so prints stay true size."
         guard panel.runModal() == .OK, let url = panel.url else { return }
 
         let items = model.session.items
         let options = Prefs.renderOptions(forPrint: true)
         let data = await Task.detached(priority: .userInitiated) {
-            PDFComposer.pdf(pages: Paginator.pages(for: items), options: options)
+            PDFComposer.pdf(pages: Paginator.pages(for: items, maxRows: maxRows), options: options)
         }.value
         do {
             try data.write(to: url)
@@ -121,6 +126,8 @@ enum PrintController {
         operation.jobTitle = "Faux Film"
         operation.showsPrintPanel = true
         operation.showsProgressPanel = true
+        // Never let the panel scale the page: prints must stay true size.
+        operation.printPanel.options.remove(.showsScaling)
         if let window {
             operation.runModal(for: window, delegate: nil, didRun: nil, contextInfo: nil)
         } else {

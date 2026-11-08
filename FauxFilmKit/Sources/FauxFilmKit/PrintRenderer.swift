@@ -7,12 +7,20 @@ public struct RenderOptions: Sendable, Equatable {
     public var paperTexture: Bool
     public var cornerGuides: Bool
     public var dpi: Double
+    /// How far (mm) the border colour extends past the card edge, so a hand cut slightly
+    /// outside the edge doesn't leave a white sliver. 0 for on-screen cards.
+    public var bleed: Double
 
-    public init(printBrightness: Double = 0.25, paperTexture: Bool = false, cornerGuides: Bool = true, dpi: Double = 300) {
+    /// Bleed used on printed sheets. Stays clear of crop marks (1 mm from the card).
+    public static let printBleed: Double = 0.75
+
+    public init(printBrightness: Double = 0.25, paperTexture: Bool = false, cornerGuides: Bool = true,
+                dpi: Double = 300, bleed: Double = 0) {
         self.printBrightness = printBrightness
         self.paperTexture = paperTexture
         self.cornerGuides = cornerGuides
         self.dpi = dpi
+        self.bleed = bleed
     }
 }
 
@@ -103,8 +111,15 @@ public enum PrintRenderer {
         let wr = MM.toPoints(spec.windowCornerRadius)
         let windowPath = CGPath(roundedRect: window, cornerWidth: wr, cornerHeight: wr, transform: nil)
 
-        // Border.
-        ctx.addPath(cardPath)
+        // Border, extended by the bleed. With rounding guides off the card is cut square,
+        // so the fill is square too (no white nicks at the corners).
+        let b = MM.toPoints(options.bleed)
+        let fillRect = card.insetBy(dx: -b, dy: -b)
+        if options.cornerGuides {
+            ctx.addPath(CGPath(roundedRect: fillRect, cornerWidth: r + b, cornerHeight: r + b, transform: nil))
+        } else {
+            ctx.addRect(fillRect)
+        }
         ctx.setFillColor(FrameStyle.borderColor)
         ctx.fillPath()
 

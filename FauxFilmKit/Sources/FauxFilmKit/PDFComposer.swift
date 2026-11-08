@@ -5,6 +5,8 @@ import Foundation
 /// Builds print-ready PDFs at exact physical size.
 public enum PDFComposer {
     public static func pdf(pages: [Page], options: RenderOptions) -> Data {
+        var options = options
+        options.bleed = RenderOptions.printBleed
         let paper = pages.first?.layout.paper ?? .letter
         return makePDF(paper: paper) { ctx in
             var pictures: [UUID: CGImage] = [:]
@@ -52,10 +54,26 @@ public enum PDFComposer {
                 ctx.move(to: CGPoint(x: x, y: a.y)); ctx.addLine(to: CGPoint(x: x, y: a.y + len)); ctx.strokePath()
             }
 
+            // L-shaped placement marks a fixed distance from the paper's top corners.
+            let marks = sizeTestEdgeMarkCornersMM(paper: paper)
+            let arm = 6.0
+            ctx.setLineWidth(0.5)
+            for (i, corner) in marks.enumerated() {
+                let dx = i == 0 ? arm : -arm
+                ctx.move(to: point(CGPoint(x: corner.x + dx, y: corner.y), paper: paper))
+                ctx.addLine(to: point(corner, paper: paper))
+                ctx.addLine(to: point(CGPoint(x: corner.x, y: corner.y + arm), paper: paper))
+                ctx.strokePath()
+            }
+
             let textOrigin = CGPoint(x: a.x, y: a.y - MM.toPoints(8))
             drawText("Instax Mini: 54 × 86 mm — lay a real print on top.", at: textOrigin, in: ctx)
             drawText("The ruler above should measure exactly 50 mm.",
                      at: CGPoint(x: textOrigin.x, y: textOrigin.y - 14), in: ctx)
+            drawText("The two corner marks at the top of the page should each sit 15 mm from the paper's top and side edges.",
+                     at: CGPoint(x: textOrigin.x, y: textOrigin.y - 28), in: ctx)
+            drawText("If they don't, your printer is shifting or scaling the page — print at 100% scale.",
+                     at: CGPoint(x: textOrigin.x, y: textOrigin.y - 42), in: ctx)
             ctx.endPDFPage()
         }
     }
@@ -68,6 +86,13 @@ public enum PDFComposer {
         let x = MM.toPoints(slot.minX)
         return (CGPoint(x: x, y: y), CGPoint(x: x + MM.toPoints(50), y: y))
     }
+
+    /// Corners of the L-shaped placement marks on the size test page (sheet mm, y down).
+    public static func sizeTestEdgeMarkCornersMM(paper: Paper) -> [CGPoint] {
+        [CGPoint(x: edgeMarkInset, y: edgeMarkInset), CGPoint(x: paper.width - edgeMarkInset, y: edgeMarkInset)]
+    }
+
+    static let edgeMarkInset: Double = 15
 
     /// Converts a printer's imageable area (points, y up, as `NSPrintInfo.imageablePageBounds`
     /// reports it) into sheet millimetres (y down) for `SheetLayout.isInside`.
