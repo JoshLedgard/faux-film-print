@@ -15,6 +15,13 @@ public final class Session {
 
     public var selectedItems: [PrintItem] { items.filter { selection.contains($0.id) } }
 
+    /// Replaces everything with a previously saved session.
+    public func restore(_ saved: [PrintItem]) {
+        items = saved
+        selection = []
+        if let last = saved.last { defaultFormat = last.format }
+    }
+
     public func add(_ images: [CGImage]) {
         let new = images.map { PrintItem(image: $0, format: defaultFormat) }
         items.append(contentsOf: new)

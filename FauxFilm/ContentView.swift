@@ -24,7 +24,10 @@ struct ContentView: View {
         } detail: {
             Group {
                 if showSheets {
-                    SheetPreviewView()
+                    SheetPreviewView { id in
+                        session.selection = [id]
+                        showSheets = false
+                    }
                 } else if let item = session.selectedItems.first, session.selection.count == 1 {
                     CropEditorView(itemID: item.id)
                 } else if session.items.isEmpty {
@@ -86,6 +89,7 @@ struct ContentView: View {
         #if DEBUG
         .task {
             // Debug aid for screenshots: `-FFDemoFiles "/path/a.heic|/path/b.jpg"`.
+            while !model.hasLoaded { try? await Task.sleep(for: .milliseconds(100)) }
             if let list = UserDefaults.standard.string(forKey: "FFDemoFiles"), model.session.items.isEmpty {
                 await model.importFiles(list.split(separator: "|").map { URL(fileURLWithPath: String($0)) })
             }

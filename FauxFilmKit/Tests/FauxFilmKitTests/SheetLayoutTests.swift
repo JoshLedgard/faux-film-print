@@ -84,3 +84,13 @@ final class SheetLayoutTests: XCTestCase {
         XCTAssertFalse(mini.isInside(CGRect(x: 3.2, y: 3.2, width: 209.5, height: 279.4 - 3.2 - 12.7)))
     }
 }
+
+final class SlotHitTests: XCTestCase {
+    func testSlotIndexAtPoint() {
+        let mini = SheetLayout.make(format: .instaxMini)
+        XCTAssertEqual(mini.slotIndex(at: CGPoint(x: 30, y: 20)), 0)        // inside first card
+        XCTAssertEqual(mini.slotIndex(at: CGPoint(x: 100, y: 150)), 4)      // centre card
+        XCTAssertNil(mini.slotIndex(at: CGPoint(x: 5, y: 5)))               // margin
+        XCTAssertNil(mini.slotIndex(at: CGPoint(x: 78, y: 50)))             // in the gap between cards
+    }
+}

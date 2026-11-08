@@ -9,6 +9,16 @@ struct FauxFilmApp: App {
         Window("Faux Film", id: "main") {
             ContentView()
                 .environment(model)
+                .task { await model.loadSavedSession() }
+                .task(id: model.saveKey) {
+                    // Debounced autosave.
+                    try? await Task.sleep(for: .milliseconds(600))
+                    guard !Task.isCancelled else { return }
+                    await model.save()
+                }
+                .onReceive(NotificationCenter.default.publisher(for: NSApplication.willTerminateNotification)) { _ in
+                    model.saveNow()
+                }
         }
         .defaultSize(width: 1100, height: 760)
         .commands {

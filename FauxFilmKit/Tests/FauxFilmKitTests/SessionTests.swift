@@ -62,3 +62,16 @@ final class SessionTests: XCTestCase {
         XCTAssertEqual(s.pages()[0].items.compactMap { $0 }.count, 2)
     }
 }
+
+@MainActor
+final class SessionRestoreTests: XCTestCase {
+    func testRestoreReplacesItemsAndSelectsNothing() {
+        let s = Session()
+        s.add([TestImages.solid(width: 10, height: 10)])
+        let saved = [PrintItem(image: TestImages.solid(width: 10, height: 10), format: .instaxSquare)]
+        s.restore(saved)
+        XCTAssertEqual(s.items.map(\.id), saved.map(\.id))
+        XCTAssertTrue(s.selection.isEmpty)
+        XCTAssertEqual(s.defaultFormat, .instaxSquare)
+    }
+}

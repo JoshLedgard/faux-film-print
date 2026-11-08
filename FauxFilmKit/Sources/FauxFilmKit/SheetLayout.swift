@@ -77,6 +77,11 @@ public struct SheetLayout: Sendable {
         return SheetLayout(format: format, paper: paper, columns: cols, rows: rows, slots: slots, ticks: ticks)
     }
 
+    /// Index of the slot containing `point` (sheet mm, y down), if any.
+    public func slotIndex(at point: CGPoint) -> Int? {
+        slots.firstIndex { $0.rect.contains(point) }
+    }
+
     /// True when every card lies inside the printer's imageable area (mm, y down).
     public func isInside(_ imageable: CGRect) -> Bool {
         slots.allSatisfy { imageable.contains($0.rect) }

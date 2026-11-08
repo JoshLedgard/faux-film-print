@@ -16,6 +16,59 @@ final class AppModel {
 
     nonisolated static let previewMaxPixel = 1400
 
+    /// False until the saved session has been loaded; saving is blocked until then so a
+    /// slow load can never overwrite the saved session with an empty one.
+    private(set) var hasLoaded = false
+    private let storeDirectory = SessionStore.defaultDirectory
+
+    // MARK: - Persistence
+
+    func loadSavedSession() async {
+        guard !hasLoaded else { return }
+        let dir = storeDirectory
+        let loaded: [(PrintItem, CGImage)] = await Task.detached(priority: .userInitiated) {
+            SessionStore.load(from: dir).map { ($0, Self.downscale($0.image, maxPixel: Self.previewMaxPixel)) }
+        }.value
+        // Keep anything added while loading (e.g. a quick drop) after the restored photos.
+        let addedMeanwhile = session.items
+        session.restore(loaded.map(\.0) + addedMeanwhile)
+        for (item, preview) in loaded { previews[item.id] = preview }
+        hasLoaded = true
+    }
+
+    /// A value that changes whenever something worth saving changes.
+    var saveKey: String {
+        session.items.map { "\($0.renderKey)x\($0.copies)" }.joined(separator: ",")
+    }
+
+    func save() async {
+        guard hasLoaded else { return }
+        let items = session.items
+        let dir = storeDirectory
+        await Task.detached(priority: .utility) {
+            try? SessionStore.save(items, to: dir)
+        }.value
+    }
+
+    /// Synchronous save for app quit.
+    func saveNow() {
+        guard hasLoaded else { return }
+        try? SessionStore.save(session.items, to: storeDirectory)
+    }
+
+    nonisolated static func downscale(_ image: CGImage, maxPixel: Int) -> CGImage {
+        let longEdge = max(image.width, image.height)
+        guard longEdge > maxPixel else { return image }
+        let scale = Double(maxPixel) / Double(longEdge)
+        let w = max(1, Int(Double(image.width) * scale)), h = max(1, Int(Double(image.height) * scale))
+        guard let ctx = CGContext(data: nil, width: w, height: h, bitsPerComponent: 8, bytesPerRow: 0,
+                                  space: CGColorSpace(name: CGColorSpace.sRGB)!,
+                                  bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else { return image }
+        ctx.interpolationQuality = .high
+        ctx.draw(image, in: CGRect(x: 0, y: 0, width: w, height: h))
+        return ctx.makeImage() ?? image
+    }
+
     /// The item with its photo swapped for the preview copy (crop is resolution-independent).
     func previewItem(_ item: PrintItem) -> PrintItem {
         var copy = item
