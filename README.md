@@ -7,10 +7,8 @@ cutting by hand.
 ## Download
 
 Grab `Faux-Film-Print-1.0.zip` from the [Releases](../../releases) page, unzip it, and drag
-**Faux Film Print** into Applications. Requires macOS 15 or later.
-
-If macOS says it can't verify the app, right-click it and choose **Open** the first time
-(or allow it in System Settings ▸ Privacy & Security).
+**Faux Film Print** into Applications. Requires macOS 15 or later. The app is signed and
+notarized by Apple.
 
 ## Build
 
@@ -23,6 +21,11 @@ open FauxFilm.xcodeproj
 
 Run the **FauxFilm** scheme. The project file is generated, so re-run `xcodegen generate`
 after adding or removing files.
+
+## Releasing
+
+`scripts/release.sh 1.1` builds, signs with Developer ID, notarizes, staples and zips the app into
+`build/dist/`. Then attach it to a GitHub release.
 
 ## Tests
 
