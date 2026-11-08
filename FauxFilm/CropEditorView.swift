@@ -49,14 +49,7 @@ struct CropEditorView: View {
             } label: {
                 Label("Rotate", systemImage: "rotate.right")
             }
-            Picker("Look", selection: Binding(
-                get: { item.look },
-                set: { model.session.setLook($0) }
-            )) {
-                ForEach(FilmLook.allCases) { Text($0.displayName).tag($0) }
-            }
-            .pickerStyle(.segmented)
-            .frame(width: 240)
+            LookControls()
         }
         .controlSize(.regular)
     }

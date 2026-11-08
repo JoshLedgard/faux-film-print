@@ -132,6 +132,6 @@ final class AppModel {
 /// A stable value that changes whenever anything that affects rendering changes.
 extension PrintItem {
     var renderKey: String {
-        "\(id)|\(format.rawValue)|\(crop.zoom)|\(crop.center.x)|\(crop.center.y)|\(crop.quarterTurns)|\(look.rawValue)"
+        "\(id)|\(format.rawValue)|\(crop.zoom)|\(crop.center.x)|\(crop.center.y)|\(crop.quarterTurns)|\(look.rawValue)|\(lookStrength)"
     }
 }

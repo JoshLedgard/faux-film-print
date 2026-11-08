@@ -30,6 +30,8 @@ struct ContentView: View {
                     }
                 } else if let item = session.selectedItems.first, session.selection.count == 1 {
                     CropEditorView(itemID: item.id)
+                } else if session.selection.count > 1 {
+                    BulkEditView()
                 } else if session.items.isEmpty {
                     ContentUnavailableView {
                         Label("No Photos Yet", systemImage: "photo.on.rectangle.angled")
@@ -40,8 +42,13 @@ struct ContentView: View {
                             .buttonStyle(.borderedProminent)
                     }
                 } else {
-                    ContentUnavailableView("Select a Photo", systemImage: "hand.point.left",
-                                           description: Text("Pick one photo in the list to crop it."))
+                    ContentUnavailableView {
+                        Label("Select a Photo", systemImage: "hand.point.left")
+                    } description: {
+                        Text("Pick one photo to crop it, or select several (⌘A for all) to change their look together.")
+                    } actions: {
+                        Button("Select All") { session.selection = Set(session.items.map(\.id)) }
+                    }
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
