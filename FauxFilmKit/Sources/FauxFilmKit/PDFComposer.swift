@@ -69,6 +69,13 @@ public enum PDFComposer {
         return (CGPoint(x: x, y: y), CGPoint(x: x + MM.toPoints(50), y: y))
     }
 
+    /// Converts a printer's imageable area (points, y up, as `NSPrintInfo.imageablePageBounds`
+    /// reports it) into sheet millimetres (y down) for `SheetLayout.isInside`.
+    public static func imageableMM(fromPoints r: CGRect, paper: Paper) -> CGRect {
+        let k = 1 / MM.pointsPerMM
+        return CGRect(x: r.minX * k, y: paper.height - r.maxY * k, width: r.width * k, height: r.height * k)
+    }
+
     // MARK: - Helpers
 
     /// Converts a sheet rect (mm, y down) into PDF points (y up).

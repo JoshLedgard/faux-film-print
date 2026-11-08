@@ -57,6 +57,24 @@ struct ContentView: View {
                 }
                 .help("Preview the printed sheets")
             }
+            ToolbarItem {
+                Button {
+                    Task { await PrintController.exportPDF(model: model) }
+                } label: {
+                    Label("Export PDF", systemImage: "square.and.arrow.up")
+                }
+                .help("Save the sheets as a PDF")
+                .disabled(session.items.isEmpty)
+            }
+            ToolbarItem {
+                Button {
+                    Task { await PrintController.printSheets(model: model) }
+                } label: {
+                    Label("Print", systemImage: "printer")
+                }
+                .help("Print the sheets at true size")
+                .disabled(session.items.isEmpty)
+            }
         }
         .onChange(of: picks) { _, newPicks in
             guard !newPicks.isEmpty else { return }

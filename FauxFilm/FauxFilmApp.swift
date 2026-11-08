@@ -11,6 +11,18 @@ struct FauxFilmApp: App {
                 .environment(model)
         }
         .defaultSize(width: 1100, height: 760)
+        .commands {
+            CommandGroup(replacing: .printItem) {
+                Button("Print…") { Task { await PrintController.printSheets(model: model) } }
+                    .keyboardShortcut("p")
+                    .disabled(model.session.items.isEmpty)
+                Button("Export PDF…") { Task { await PrintController.exportPDF(model: model) } }
+                    .keyboardShortcut("e", modifiers: [.command, .shift])
+                    .disabled(model.session.items.isEmpty)
+                Divider()
+                Button("Print Size Test…") { PrintController.printSizeTest() }
+            }
+        }
 
         Settings {
             SettingsView()

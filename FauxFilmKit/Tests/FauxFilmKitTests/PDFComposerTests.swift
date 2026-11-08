@@ -26,3 +26,33 @@ final class PDFComposerTests: XCTestCase {
         XCTAssertEqual(box.height, 792, accuracy: 0.01)
     }
 }
+
+final class SizeTestRulerTests: XCTestCase {
+    func testSizeTestRulerIs50mm() {
+        let (a, b) = PDFComposer.rulerSegmentPt()
+        XCTAssertEqual(hypot(b.x - a.x, b.y - a.y), MM.toPoints(50), accuracy: 0.001)
+        XCTAssertEqual(a.y, b.y)
+    }
+
+    func testImageableRectConversion() {
+        // A printer imageable area of 0.25 in all round, in points (y up) → mm (y down).
+        let mm = PDFComposer.imageableMM(fromPoints: CGRect(x: 18, y: 18, width: 576, height: 756), paper: .letter)
+        XCTAssertEqual(mm.minX, 6.35, accuracy: 0.001)
+        XCTAssertEqual(mm.minY, 6.35, accuracy: 0.001)
+        XCTAssertEqual(mm.width, 203.2, accuracy: 0.001)
+    }
+
+    /// Writes sample output for a visual check: FAUXFILM_SAMPLE_DIR=/path swift test
+    func testWriteSampleSheet() throws {
+        guard let dir = ProcessInfo.processInfo.environment["FAUXFILM_SAMPLE_DIR"] else { throw XCTSkip("no sample dir") }
+        let url = URL(fileURLWithPath: "/System/Library/Desktop Pictures/.thumbnails/Big Sur Coastline.heic")
+        let photo = try XCTUnwrap(ImageDecoder.decode(url: url))
+        var items = (0..<8).map { _ in PrintItem(image: photo, format: .instaxMini) }
+        items[1].look = .instant
+        items[2].look = .faded
+        items.append(PrintItem(image: photo, format: .instaxWide))
+        let data = PDFComposer.pdf(pages: Paginator.pages(for: items), options: RenderOptions())
+        try data.write(to: URL(fileURLWithPath: dir).appendingPathComponent("sample-sheets.pdf"))
+        try PDFComposer.sizeTestPDF().write(to: URL(fileURLWithPath: dir).appendingPathComponent("size-test.pdf"))
+    }
+}
