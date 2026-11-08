@@ -51,3 +51,7 @@ Settings (⌘,) has print brightness (inkjet prints often come out darker than t
 corner rounding guides and an optional border texture.
 
 Border sizes live in `FauxFilmKit/Sources/FauxFilmKit/Geometry.swift`. Tweak them there after a test print.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
