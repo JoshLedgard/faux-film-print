@@ -18,7 +18,8 @@ struct CropEditorView: View {
                     let spec = item.spec
                     let fit = min(geo.size.width / spec.cardWidth, geo.size.height / spec.cardHeight)
                     let width = spec.cardWidth * fit
-                    CardView(item: model.previewItem(item), width: width)
+                    CardView(item: model.previewItem(item), width: width,
+                             fastPreview: dragStart != nil || zoomStart != nil)
                         .gesture(dragGesture(item: item, pointsPerMM: fit))
                         .simultaneousGesture(magnifyGesture(item: item))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
