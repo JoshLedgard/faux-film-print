@@ -46,13 +46,21 @@ enum Prefs {
     static let paperTexture = "paperTexture"
     static let cornerGuides = "cornerGuides"
     static let didShowSizeTestHint = "didShowSizeTestHint"
+    static let paperSize = "paperSize"
 
     static func register() {
         UserDefaults.standard.register(defaults: [
             printBrightness: 0.25,
             paperTexture: false,
             cornerGuides: true,
+            paperSize: PaperSize.letter.rawValue,
         ])
+    }
+
+    /// The paper sheets are laid out and printed on.
+    static var paper: Paper {
+        register()
+        return (PaperSize(rawValue: UserDefaults.standard.string(forKey: paperSize) ?? "") ?? .letter).paper
     }
 
     /// Options for printing (`forPrint == true`) or on-screen previews.
@@ -71,9 +79,18 @@ struct SettingsView: View {
     @AppStorage(Prefs.printBrightness) private var printBrightness = 0.25
     @AppStorage(Prefs.paperTexture) private var paperTexture = false
     @AppStorage(Prefs.cornerGuides) private var cornerGuides = true
+    @AppStorage(Prefs.paperSize) private var paperSize = PaperSize.letter
 
     var body: some View {
         Form {
+            Section {
+                Picker("Paper", selection: $paperSize) {
+                    ForEach(PaperSize.allCases) { Text($0.displayName).tag($0) }
+                }
+                Text("Sheets are laid out for this paper. Prints are always true size.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
             Section {
                 Slider(value: $printBrightness, in: -1...1, step: 0.05) {
                     Text("Print brightness")
@@ -88,7 +105,7 @@ struct SettingsView: View {
             }
             Section {
                 Toggle("Corner rounding guides", isOn: $cornerGuides)
-                Text("Faint curves at each corner to trim along, or to line up a corner-rounder punch.")
+                Text("Faint curves at each corner of instant film to trim along, or to line up a corner-rounder punch. Photo prints have square corners.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 Toggle("Paper texture on border", isOn: $paperTexture)

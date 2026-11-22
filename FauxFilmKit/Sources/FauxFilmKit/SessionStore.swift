@@ -20,6 +20,8 @@ public enum SessionStore {
         var lookStrength: Double?
         var copies: Int
         var photo: String
+        /// Optional so sessions saved before photo prints existed still load.
+        var landscape: Bool?
     }
 
     /// Default location: Application Support/Faux Film (inside the app's sandbox container).
@@ -42,7 +44,7 @@ public enum SessionStore {
             }
             stored.append(StoredItem(id: item.id, format: item.format, crop: item.crop,
                                      look: item.look, lookStrength: item.lookStrength,
-                                     copies: item.copies, photo: name))
+                                     copies: item.copies, photo: name, landscape: item.landscape))
         }
 
         let data = try JSONEncoder().encode(Manifest(items: stored))
@@ -64,6 +66,7 @@ public enum SessionStore {
             guard let image = ImageDecoder.decode(url: photos.appendingPathComponent(s.photo)) else { return nil }
             var item = PrintItem(id: s.id, image: image, format: s.format, crop: s.crop, look: s.look, copies: s.copies)
             item.lookStrength = s.lookStrength ?? PrintItem.defaultLookStrength
+            item.landscape = s.landscape ?? false
             return item
         }
     }

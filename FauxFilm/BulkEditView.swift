@@ -15,7 +15,8 @@ struct BulkEditView: View {
                         Button {
                             model.session.selection = [item.id]
                         } label: {
-                            CardView(item: model.previewItem(item), width: item.format.spec.cardWidth > 60 ? 140 : 100)
+                            CardView(item: model.previewItem(item),
+                                     width: CardView.width(for: item, fitting: CGSize(width: 140, height: 170)))
                                 .frame(height: 170)
                         }
                         .buttonStyle(.plain)
@@ -29,7 +30,18 @@ struct BulkEditView: View {
                 Text("\(selected.count) photos selected. Changes apply to all of them. Click one to crop it.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
-                LookControls()
+                HStack(spacing: 20) {
+                    if selected.contains(where: \.format.isPhotoPrint) {
+                        Menu("Orientation") {
+                            Button("Match Each Photo") { model.session.matchOrientationToPhotos() }
+                            Button("All Portrait") { model.session.setLandscape(false) }
+                            Button("All Landscape") { model.session.setLandscape(true) }
+                        }
+                        .fixedSize()
+                        .help("Portrait or landscape for the selected photo prints")
+                    }
+                    LookControls()
+                }
             }
             .padding(.vertical, 16)
             .frame(maxWidth: .infinity)

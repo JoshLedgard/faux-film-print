@@ -29,6 +29,44 @@ public struct FrameSpec: Sendable, Equatable {
 
     /// Width / height of the picture window.
     public var pictureAspect: Double { pictureRect.width / pictureRect.height }
+
+    /// True for standard photo prints: the picture runs to the card edge.
+    public var isFrameless: Bool { side == 0 && top == 0 && bottom == 0 }
+
+    /// How far (mm) the crop reaches past the picture edge on every side. Frameless prints
+    /// bleed the picture itself past the cut line, so the crop covers that bleed too and the
+    /// trimmed print shows exactly what the crop editor shows.
+    public var pictureBleed: Double { isFrameless ? RenderOptions.printBleed : 0 }
+
+    /// Width / height of the image area the crop covers, bleed included.
+    public var cropAspect: Double {
+        (pictureRect.width + 2 * pictureBleed) / (pictureRect.height + 2 * pictureBleed)
+    }
+
+    /// The same card turned a quarter (width and height swapped). Only meaningful for
+    /// frameless prints, whose borders are all zero.
+    public var turned: FrameSpec {
+        FrameSpec(cardWidth: cardHeight, cardHeight: cardWidth, side: side, top: bottom, bottom: top,
+                  cornerRadius: cornerRadius, windowCornerRadius: windowCornerRadius)
+    }
+
+    /// A standard print with no border and square corners.
+    static func frameless(width: Double, height: Double) -> FrameSpec {
+        FrameSpec(cardWidth: width, cardHeight: height, side: 0, top: 0, bottom: 0, cornerRadius: 0, windowCornerRadius: 0)
+    }
+}
+
+/// Instant film with a printed frame, or a standard frameless photo print.
+public enum FormatFamily: String, CaseIterable, Sendable {
+    case instantFilm
+    case photoPrint
+
+    public var displayName: String {
+        switch self {
+        case .instantFilm: "Instant Film"
+        case .photoPrint: "Photo Prints"
+        }
+    }
 }
 
 public enum FilmFormat: String, CaseIterable, Codable, Sendable, Identifiable {
@@ -36,8 +74,29 @@ public enum FilmFormat: String, CaseIterable, Codable, Sendable, Identifiable {
     case instaxSquare
     case instaxWide
     case polaroidSquare
+    // Standard photo prints (frameless). New cases go at the end: saved sessions store the raw value.
+    case photoWallet
+    case photo3x5
+    case photo4x6
+    case photo5x7
+    case photo8x10
+    case photo4x4
 
     public var id: String { rawValue }
+
+    public var family: FormatFamily {
+        switch self {
+        case .instaxMini, .instaxSquare, .instaxWide, .polaroidSquare: .instantFilm
+        case .photoWallet, .photo3x5, .photo4x6, .photo5x7, .photo8x10, .photo4x4: .photoPrint
+        }
+    }
+
+    public var isPhotoPrint: Bool { family == .photoPrint }
+
+    /// Formats in one family, in menu order.
+    public static func formats(in family: FormatFamily) -> [FilmFormat] {
+        allCases.filter { $0.family == family }
+    }
 
     public var displayName: String {
         switch self {
@@ -45,6 +104,12 @@ public enum FilmFormat: String, CaseIterable, Codable, Sendable, Identifiable {
         case .instaxSquare: "Instax Square"
         case .instaxWide: "Instax Wide"
         case .polaroidSquare: "Polaroid Square"
+        case .photoWallet: "Wallet 2.5 × 3.5 in"
+        case .photo3x5: "3.5 × 5 in"
+        case .photo4x6: "4 × 6 in"
+        case .photo5x7: "5 × 7 in"
+        case .photo8x10: "8 × 10 in"
+        case .photo4x4: "Square 4 × 4 in"
         }
     }
 
@@ -59,6 +124,13 @@ public enum FilmFormat: String, CaseIterable, Codable, Sendable, Identifiable {
             FrameSpec(cardWidth: 108, cardHeight: 86, side: 4.5, top: 6, bottom: 18, cornerRadius: 3, windowCornerRadius: 0.5)
         case .polaroidSquare:
             FrameSpec(cardWidth: 88, cardHeight: 107, side: 4.5, top: 6, bottom: 22, cornerRadius: 1, windowCornerRadius: 0.5)
+        // Photo prints are stored portrait; a landscape print is the same card turned.
+        case .photoWallet: .frameless(width: 63.5, height: 88.9)
+        case .photo3x5: .frameless(width: 88.9, height: 127)
+        case .photo4x6: .frameless(width: 101.6, height: 152.4)
+        case .photo5x7: .frameless(width: 127, height: 177.8)
+        case .photo8x10: .frameless(width: 203.2, height: 254)
+        case .photo4x4: .frameless(width: 101.6, height: 101.6)
         }
     }
 }
@@ -75,4 +147,29 @@ public struct Paper: Sendable, Equatable {
 
     /// US Letter, 8.5 × 11 in, portrait.
     public static let letter = Paper(width: 215.9, height: 279.4)
+
+    /// ISO A4, 210 × 297 mm, portrait.
+    public static let a4 = Paper(width: 210, height: 297)
+}
+
+/// The sheet sizes the user can print on.
+public enum PaperSize: String, CaseIterable, Sendable, Identifiable {
+    case letter
+    case a4
+
+    public var id: String { rawValue }
+
+    public var paper: Paper {
+        switch self {
+        case .letter: .letter
+        case .a4: .a4
+        }
+    }
+
+    public var displayName: String {
+        switch self {
+        case .letter: "US Letter"
+        case .a4: "A4"
+        }
+    }
 }

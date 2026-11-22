@@ -18,7 +18,7 @@ public enum PDFComposer {
                     pictures[item.id] = picture
                     PrintRenderer.drawCard(item, picture: picture, in: ctx,
                                            cardRectPt: pointRect(slot.rect, paper: page.layout.paper),
-                                           rotated: slot.rotated, options: options)
+                                           rotated: slot.drawsRotated(item), options: options)
                 }
                 drawTicks(page.layout.ticks, in: ctx, paper: page.layout.paper)
                 ctx.endPDFPage()

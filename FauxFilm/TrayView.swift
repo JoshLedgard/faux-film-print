@@ -38,7 +38,7 @@ struct TrayView: View {
 
     private var summary: String {
         let prints = model.session.items.reduce(0) { $0 + $1.copies }
-        let sheets = model.session.pages().count
+        let sheets = model.session.pages(paper: Prefs.paper).count
         guard prints > 0 else { return "" }
         return "\(prints) print\(prints == 1 ? "" : "s") · \(sheets) sheet\(sheets == 1 ? "" : "s")"
     }
@@ -50,7 +50,7 @@ private struct TrayRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            CardView(item: item, width: item.format.spec.cardWidth > 60 ? 64 : 44)
+            CardView(item: item, width: CardView.width(for: item, fitting: CGSize(width: 64, height: 76)))
                 .frame(width: 64, height: 76)
             VStack(alignment: .leading, spacing: 4) {
                 Text(item.format.displayName).font(.callout)
