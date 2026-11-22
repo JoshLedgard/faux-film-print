@@ -93,6 +93,9 @@ public enum FilmFormat: String, CaseIterable, Codable, Sendable, Identifiable {
 
     public var isPhotoPrint: Bool { family == .photoPrint }
 
+    /// True for photo prints that can be printed portrait or landscape (all but square).
+    public var hasOrientation: Bool { isPhotoPrint && spec.cardWidth != spec.cardHeight }
+
     /// Formats in one family, in menu order.
     public static func formats(in family: FormatFamily) -> [FilmFormat] {
         allCases.filter { $0.family == family }

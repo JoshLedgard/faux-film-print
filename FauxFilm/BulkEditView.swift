@@ -31,7 +31,7 @@ struct BulkEditView: View {
                     .font(.callout)
                     .foregroundStyle(.secondary)
                 HStack(spacing: 20) {
-                    if selected.contains(where: \.format.isPhotoPrint) {
+                    if selected.contains(where: \.format.hasOrientation) {
                         Menu("Orientation") {
                             Button("Match Each Photo") { model.session.matchOrientationToPhotos() }
                             Button("All Portrait") { model.session.setLandscape(false) }

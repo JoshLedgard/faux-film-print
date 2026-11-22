@@ -48,7 +48,7 @@ public final class Session {
     /// Prints the selected photo prints landscape or portrait. Crops reset, as for a format change.
     public func setLandscape(_ landscape: Bool) {
         mutateSelected { item in
-            guard item.landscape != landscape else { return }
+            guard item.format.hasOrientation, item.landscape != landscape else { return }
             item.landscape = landscape
             item.crop = Crop(quarterTurns: item.crop.quarterTurns)
         }
@@ -57,7 +57,7 @@ public final class Session {
     /// Gives each selected photo the orientation that matches its own shape.
     public func matchOrientationToPhotos() {
         mutateSelected { item in
-            guard item.landscape != item.photoIsLandscape else { return }
+            guard item.format.hasOrientation, item.landscape != item.photoIsLandscape else { return }
             item.landscape = item.photoIsLandscape
             item.crop = Crop(quarterTurns: item.crop.quarterTurns)
         }

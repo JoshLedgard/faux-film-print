@@ -63,8 +63,8 @@ public struct PrintItem: Identifiable, Sendable {
         self.landscape = landscape
     }
 
-    /// True when this prints as a landscape photo print.
-    public var isLandscape: Bool { format.isPhotoPrint && landscape }
+    /// True when this prints as a landscape photo print. Never for instant film or square prints.
+    public var isLandscape: Bool { format.hasOrientation && landscape }
 
     /// The card as it is printed: the format's spec, turned for landscape photo prints.
     public var spec: FrameSpec { isLandscape ? format.spec.turned : format.spec }

@@ -105,6 +105,16 @@ final class PhotoPrintTests: XCTestCase {
         XCTAssertTrue(uprightSlot.drawsRotated(item))
     }
 
+    func testSquarePrintsHaveNoOrientation() {
+        XCTAssertFalse(FilmFormat.photo4x4.hasOrientation)
+        XCTAssertTrue(FilmFormat.photo4x6.hasOrientation)
+        XCTAssertFalse(FilmFormat.instaxWide.hasOrientation)
+        // A wide photo on a square print is not turned in the PDF.
+        let item = PrintItem(image: TestImages.solid(width: 300, height: 200), format: .photo4x4, landscape: true)
+        XCTAssertFalse(item.isLandscape)
+        XCTAssertFalse(Slot(rect: .zero, rotated: false).drawsRotated(item))
+    }
+
     func testPhotoIsLandscapeFollowsQuarterTurns() {
         var item = PrintItem(image: TestImages.solid(width: 300, height: 200), format: .photo4x6)
         XCTAssertTrue(item.photoIsLandscape)
@@ -236,6 +246,28 @@ final class PhotoPrintSessionTests: XCTestCase {
         s.matchOrientationToPhotos()
         XCTAssertTrue(s.items[0].isLandscape)
         XCTAssertFalse(s.items[1].isLandscape)
+    }
+
+    func testBulkOrientationLeavesFixedShapesAlone() {
+        let s = Session()
+        s.add([wide])                       // Instax Mini, landscape flag set from the photo
+        s.defaultFormat = .photo4x4
+        s.add([wide])
+        s.defaultFormat = .photo4x6
+        s.add([tall])
+        for item in s.items { s.updateCrop(Crop(zoom: 2), for: item.id) }
+        s.selection = Set(s.items.map(\.id))
+        s.setLandscape(false)
+        XCTAssertEqual(s.items[0].crop.zoom, 2)
+        XCTAssertEqual(s.items[1].crop.zoom, 2)
+        s.setLandscape(true)
+        XCTAssertTrue(s.items[2].isLandscape)
+        XCTAssertEqual(s.items[2].crop, Crop())
+        s.updateCrop(Crop(zoom: 2), for: s.items[2].id)
+        s.matchOrientationToPhotos()
+        XCTAssertEqual(s.items[0].crop.zoom, 2)
+        XCTAssertEqual(s.items[1].crop.zoom, 2)
+        XCTAssertFalse(s.items[2].isLandscape)
     }
 
     func testOrientationIsSaved() throws {

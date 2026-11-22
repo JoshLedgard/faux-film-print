@@ -47,7 +47,7 @@ struct CropEditorView: View {
             } label: {
                 Label("Rotate", systemImage: "rotate.right")
             }
-            if item.format.isPhotoPrint && item.spec.cardWidth != item.spec.cardHeight {
+            if item.format.hasOrientation {
                 Picker("Orientation", selection: Binding(
                     get: { item.landscape },
                     set: { model.session.setLandscape($0) }
