@@ -6,6 +6,12 @@ public struct Slot: Equatable, Sendable {
     public let rect: CGRect
     /// When true the card is turned 90° clockwise to fit more per sheet.
     public let rotated: Bool
+
+    /// Whether `item` is drawn turned in this slot. Slots are laid out for the format's portrait
+    /// card, so a landscape photo print is turned unless the slot already is.
+    public func drawsRotated(_ item: PrintItem) -> Bool {
+        rotated != item.isLandscape
+    }
 }
 
 /// A short crop-mark hairline, in sheet millimetres.
@@ -28,6 +34,9 @@ public struct SheetLayout: Sendable {
     public static let tickOffset: Double = 1
     /// Length of crop marks placed in margins.
     public static let tickLength: Double = 3
+    /// Margin tried when nothing fits with the normal one (8 × 10 on A4). Whether the printer
+    /// can reach that close to the edge is checked at print time, as for every layout.
+    public static let tightMargin: Double = 3
 
     public static func make(
         format: FilmFormat,
@@ -49,6 +58,9 @@ public struct SheetLayout: Sendable {
         let turnedSize = CGSize(width: card.height, height: card.width)
         let turned = fit(turnedSize)
         let useTurned = turned.cols * turned.rows > upright.cols * upright.rows
+        if max(turned.cols * turned.rows, upright.cols * upright.rows) == 0, margin > tightMargin {
+            return make(format: format, paper: paper, gap: gap, margin: tightMargin, maxRows: maxRows)
+        }
         let (cols, rows) = useTurned ? turned : upright
         let size = useTurned ? turnedSize : card
 
@@ -126,10 +138,12 @@ public struct SheetLayout: Sendable {
             }
         }
 
-        // Horizontal ticks in the side margins, at every row edge.
-        for y in rowEdges {
-            ticks.append(Tick(from: CGPoint(x: left - o - L, y: y), to: CGPoint(x: left - o, y: y)))
-            ticks.append(Tick(from: CGPoint(x: right + o, y: y), to: CGPoint(x: right + o + L, y: y)))
+        // Horizontal ticks in the side margins, at every row edge, when they fit on the paper.
+        if left >= o + L {
+            for y in rowEdges {
+                ticks.append(Tick(from: CGPoint(x: left - o - L, y: y), to: CGPoint(x: left - o, y: y)))
+                ticks.append(Tick(from: CGPoint(x: right + o, y: y), to: CGPoint(x: right + o + L, y: y)))
+            }
         }
 
         // Vertical ticks above the top row and below the bottom row, only when there is room.

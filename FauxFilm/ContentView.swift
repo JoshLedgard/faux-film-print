@@ -55,11 +55,16 @@ struct ContentView: View {
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Picker("Format", selection: formatBinding) {
-                    ForEach(FilmFormat.allCases) { Text($0.displayName).tag($0) }
+                Picker("Print", selection: formatBinding) {
+                    ForEach(FormatFamily.allCases, id: \.self) { family in
+                        Section(family.displayName) {
+                            ForEach(FilmFormat.formats(in: family)) { Text($0.displayName).tag($0) }
+                        }
+                    }
                 }
-                .pickerStyle(.segmented)
-                .help("Film format for the selected photos and for new ones")
+                .pickerStyle(.menu)
+                .fixedSize()
+                .help("Instant film or photo print size, for the selected photos and for new ones")
             }
             ToolbarItem {
                 Toggle(isOn: $showSheets) {

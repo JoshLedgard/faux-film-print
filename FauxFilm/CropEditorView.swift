@@ -15,10 +15,11 @@ struct CropEditorView: View {
         if let item {
             VStack(spacing: 20) {
                 GeometryReader { geo in
-                    let spec = item.format.spec
+                    let spec = item.spec
                     let fit = min(geo.size.width / spec.cardWidth, geo.size.height / spec.cardHeight)
                     let width = spec.cardWidth * fit
-                    CardView(item: model.previewItem(item), width: width)
+                    CardView(item: model.previewItem(item), width: width,
+                             fastPreview: dragStart != nil || zoomStart != nil)
                         .gesture(dragGesture(item: item, pointsPerMM: fit))
                         .simultaneousGesture(magnifyGesture(item: item))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -43,11 +44,22 @@ struct CropEditorView: View {
                 Image(systemName: "plus.magnifyingglass")
             }
             Button {
-                var c = Crop(quarterTurns: (item.crop.quarterTurns + 1) % 4)
-                c.zoom = 1
-                model.session.updateCrop(c, for: item.id)
+                model.session.rotate(item.id)
             } label: {
                 Label("Rotate", systemImage: "rotate.right")
+            }
+            if item.format.hasOrientation {
+                Picker("Orientation", selection: Binding(
+                    get: { item.landscape },
+                    set: { model.session.setLandscape($0) }
+                )) {
+                    Text("Portrait").tag(false)
+                    Text("Landscape").tag(true)
+                }
+                .pickerStyle(.segmented)
+                .labelsHidden()
+                .fixedSize()
+                .help("Print this photo portrait or landscape")
             }
             LookControls()
         }
@@ -68,9 +80,9 @@ struct CropEditorView: View {
                 let start = dragStart ?? item.crop
                 if dragStart == nil { dragStart = start }
                 let size = rotatedSize(item)
-                let aspect = item.format.spec.pictureAspect
+                let aspect = item.spec.cropAspect
                 let src = start.sourceRect(imageSize: size, targetAspect: aspect)
-                let windowWidthPt = item.format.spec.pictureRect.width * pointsPerMM
+                let windowWidthPt = item.spec.pictureRect.width * pointsPerMM
                 let pixelsPerPoint = src.width / windowWidthPt
                 var c = start
                 // Dragging right reveals more of the left side: the centre moves left.
@@ -95,7 +107,7 @@ struct CropEditorView: View {
         var c = base ?? item.crop
         c.zoom = min(max(zoom, Crop.zoomRange.lowerBound), Crop.zoomRange.upperBound)
         model.session.updateCrop(
-            c.clamped(imageSize: rotatedSize(item), targetAspect: item.format.spec.pictureAspect),
+            c.clamped(imageSize: rotatedSize(item), targetAspect: item.spec.cropAspect),
             for: item.id
         )
     }

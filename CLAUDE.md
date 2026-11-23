@@ -5,8 +5,9 @@ Guidance for Claude Code when working in this repository.
 ## Project
 
 **Faux Film Print** is a macOS app (Swift 6, SwiftUI, macOS 15+) that frames photos as
-true-size instant-film prints (Instax Mini/Square/Wide, Polaroid Square) and prints them on
-US Letter sheets with crop marks for cutting by hand. The core promise: prints match real
+true-size instant-film prints (Instax Mini/Square/Wide, Polaroid Square), or as frameless standard
+photo prints (wallet, 3.5×5, 4×6, 5×7, 8×10, square 4×4), and prints them on US Letter or A4 sheets
+with crop marks for cutting by hand. The core promise: prints match real
 instant film in physical size and look. **Never scale a print to fit**, and never write to the
 user's original photos.
 
@@ -17,7 +18,8 @@ user's original photos.
 ## Layout
 
 - `FauxFilmKit/`: Swift package with all the logic, fully unit-tested.
-  - `Geometry.swift`: `FilmFormat`, `FrameSpec` (border sizes in mm), `Paper`, `MM`.
+  - `Geometry.swift`: `FilmFormat` (instant film and photo print sizes), `FrameSpec` (border sizes in mm;
+    all zero for frameless photo prints), `Paper`/`PaperSize`, `MM`.
   - `SheetLayout.swift`: grid per format, crop-mark ticks, `isInside`, `slotIndex(at:)`.
   - `Crop.swift`, `ImageIO+Ops.swift`: crop math, EXIF-correct downsampled decode, rotation.
   - `Looks.swift`: `FilmLook` recipes (per-channel tone curves, grain, softness, vignette) plus strength.
@@ -33,6 +35,8 @@ user's original photos.
 ## Conventions
 
 - Geometry is in **millimetres, top-left origin, y down**. Convert to PDF points (y up) only at draw time.
+- Photo prints are stored portrait; `PrintItem.landscape` turns the card (`PrintItem.spec`). New `FilmFormat`
+  cases go at the end and keep their raw values, since saved sessions store them.
 - Instax Mini border values matter most; adjust them in `Geometry.swift` after a real test print.
 - Kit code is test-first: add or extend a test in `FauxFilmKit/Tests` before changing behaviour.
 - After adding or removing app source files, run `xcodegen generate`.

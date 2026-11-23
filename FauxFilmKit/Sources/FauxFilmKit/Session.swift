@@ -23,19 +23,52 @@ public final class Session {
     }
 
     public func add(_ images: [CGImage]) {
-        let new = images.map { PrintItem(image: $0, format: defaultFormat) }
+        let new = images.map { image in
+            var item = PrintItem(image: image, format: defaultFormat)
+            item.landscape = item.photoIsLandscape
+            return item
+        }
         items.append(contentsOf: new)
         if let last = new.last { selection = [last.id] }
     }
 
     /// Applies a format to the selected photos. Their crops reset to centred/fill
-    /// (crops don't carry across aspect ratios); rotation is kept.
+    /// (crops don't carry across aspect ratios); rotation is kept. Photo prints take the
+    /// orientation that matches each photo.
     public func setFormat(_ format: FilmFormat) {
         defaultFormat = format
         mutateSelected { item in
             guard item.format != format else { return }
             item.format = format
+            item.landscape = item.photoIsLandscape
             item.crop = Crop(quarterTurns: item.crop.quarterTurns)
+        }
+    }
+
+    /// Prints the selected photo prints landscape or portrait. Crops reset, as for a format change.
+    public func setLandscape(_ landscape: Bool) {
+        mutateSelected { item in
+            guard item.format.hasOrientation, item.landscape != landscape else { return }
+            item.landscape = landscape
+            item.crop = Crop(quarterTurns: item.crop.quarterTurns)
+        }
+    }
+
+    /// Gives each selected photo the orientation that matches its own shape.
+    public func matchOrientationToPhotos() {
+        mutateSelected { item in
+            guard item.format.hasOrientation, item.landscape != item.photoIsLandscape else { return }
+            item.landscape = item.photoIsLandscape
+            item.crop = Crop(quarterTurns: item.crop.quarterTurns)
+        }
+    }
+
+    /// Turns a photo a quarter clockwise and resets its crop. A photo print follows the
+    /// photo's new shape, so a landscape photo turned upright prints portrait.
+    public func rotate(_ id: UUID) {
+        mutate(id) { item in
+            item.crop = Crop(quarterTurns: (item.crop.quarterTurns + 1) % 4)
+            item.landscape = item.photoIsLandscape
         }
     }
 
@@ -62,8 +95,8 @@ public final class Session {
         selection.subtract(ids)
     }
 
-    public func pages(maxRows: [FilmFormat: Int] = [:]) -> [Page] {
-        Paginator.pages(for: items, maxRows: maxRows)
+    public func pages(paper: Paper = .letter, maxRows: [FilmFormat: Int] = [:]) -> [Page] {
+        Paginator.pages(for: items, paper: paper, maxRows: maxRows)
     }
 
     private func mutate(_ id: UUID, _ change: (inout PrintItem) -> Void) {

@@ -7,8 +7,6 @@ import UniformTypeIdentifiers
 /// far enough toward the paper edge, we print fewer rows, never smaller prints.
 @MainActor
 enum PrintController {
-    private static let letterPoints = NSSize(width: 612, height: 792)
-
     static func printSheets(model: AppModel) async {
         guard !model.session.items.isEmpty else { return }
         let window = NSApp.keyWindow
@@ -26,26 +24,29 @@ enum PrintController {
             }
         }
 
-        let info = printInfo()
-        guard let maxRows = rowsThatFit(model: model, info: info) else { return }
+        let paper = Prefs.paper
+        let info = printInfo(paper: paper)
+        guard let maxRows = rowsThatFit(model: model, info: info, paper: paper) else { return }
 
         let items = model.session.items
         let options = Prefs.renderOptions(forPrint: true)
         let data = await Task.detached(priority: .userInitiated) {
-            PDFComposer.pdf(pages: Paginator.pages(for: items, maxRows: maxRows), options: options)
+            PDFComposer.pdf(pages: Paginator.pages(for: items, paper: paper, maxRows: maxRows), options: options)
         }.value
         run(data: data, info: info, window: window)
     }
 
     static func printSizeTest() {
-        run(data: PDFComposer.sizeTestPDF(), info: printInfo(), window: NSApp.keyWindow)
+        let paper = Prefs.paper
+        run(data: PDFComposer.sizeTestPDF(paper: paper), info: printInfo(paper: paper), window: NSApp.keyWindow)
     }
 
     static func exportPDF(model: AppModel) async {
         guard !model.session.items.isEmpty else { return }
         // Same printable-area check as printing (against the default printer), so the
         // PDF is safe to print from Preview too.
-        guard let maxRows = rowsThatFit(model: model, info: printInfo()) else { return }
+        let paper = Prefs.paper
+        guard let maxRows = rowsThatFit(model: model, info: printInfo(paper: paper), paper: paper) else { return }
 
         let panel = NSSavePanel()
         panel.allowedContentTypes = [.pdf]
@@ -56,7 +57,7 @@ enum PrintController {
         let items = model.session.items
         let options = Prefs.renderOptions(forPrint: true)
         let data = await Task.detached(priority: .userInitiated) {
-            PDFComposer.pdf(pages: Paginator.pages(for: items, maxRows: maxRows), options: options)
+            PDFComposer.pdf(pages: Paginator.pages(for: items, paper: paper, maxRows: maxRows), options: options)
         }.value
         do {
             try data.write(to: url)
@@ -67,9 +68,9 @@ enum PrintController {
 
     // MARK: - Helpers
 
-    private static func printInfo() -> NSPrintInfo {
+    private static func printInfo(paper: Paper) -> NSPrintInfo {
         let info = (NSPrintInfo.shared.copy() as? NSPrintInfo) ?? NSPrintInfo()
-        info.paperSize = letterPoints
+        info.paperSize = NSSize(width: MM.toPoints(paper.width), height: MM.toPoints(paper.height))
         info.orientation = .portrait
         info.topMargin = 0
         info.bottomMargin = 0
@@ -85,27 +86,27 @@ enum PrintController {
 
     /// Checks each format's grid against the printer's imageable area. Returns the row
     /// limits to use, or nil if the user cancelled.
-    private static func rowsThatFit(model: AppModel, info: NSPrintInfo) -> [FilmFormat: Int]? {
-        let imageable = PDFComposer.imageableMM(fromPoints: info.imageablePageBounds, paper: .letter)
+    private static func rowsThatFit(model: AppModel, info: NSPrintInfo, paper: Paper) -> [FilmFormat: Int]? {
+        let imageable = PDFComposer.imageableMM(fromPoints: info.imageablePageBounds, paper: paper)
         var maxRows: [FilmFormat: Int] = [:]
         let formats = Set(model.session.items.map(\.format))
         for format in FilmFormat.allCases where formats.contains(format) {
-            let full = SheetLayout.make(format: format)
+            let full = SheetLayout.make(format: format, paper: paper)
             guard !full.isInside(imageable) else { continue }
             var rows = full.rows - 1
-            while rows > 0, !SheetLayout.make(format: format, maxRows: rows).isInside(imageable) { rows -= 1 }
+            while rows > 0, !SheetLayout.make(format: format, paper: paper, maxRows: rows).isInside(imageable) { rows -= 1 }
 
             let alert = NSAlert()
             alert.messageText = "Your printer can't print this close to the edge"
             if rows > 0 {
-                let fits = SheetLayout.make(format: format, maxRows: rows).slots.count
+                let fits = SheetLayout.make(format: format, paper: paper, maxRows: rows).slots.count
                 alert.informativeText = "To keep \(format.displayName) prints at true size, Faux Film Print can fit \(fits) per sheet instead of \(full.slots.count). If your printer has a borderless paper option, choosing it as the default paper may let all \(full.slots.count) fit."
                 alert.addButton(withTitle: "Print \(fits) per Sheet")
                 alert.addButton(withTitle: "Cancel")
                 guard alert.runModal() == .alertFirstButtonReturn else { return nil }
                 maxRows[format] = rows
             } else {
-                alert.informativeText = "\(format.displayName) prints won't fit inside this printer's printable area at true size."
+                alert.informativeText = "\(format.displayName) prints won't fit inside this printer's printable area at true size. If your printer has a borderless paper option, choosing it as the default paper may make room."
                 alert.addButton(withTitle: "OK")
                 alert.runModal()
                 return nil

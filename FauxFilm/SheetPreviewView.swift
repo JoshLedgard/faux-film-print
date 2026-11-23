@@ -8,6 +8,7 @@ struct SheetPreviewView: View {
     @Environment(AppModel.self) private var model
     @AppStorage(Prefs.cornerGuides) private var cornerGuides = true
     @AppStorage(Prefs.paperTexture) private var paperTexture = false
+    @AppStorage(Prefs.paperSize) private var paperSize = PaperSize.letter
     @State private var document: PDFDocument?
     @State private var pages: [Page] = []
 
@@ -15,7 +16,7 @@ struct SheetPreviewView: View {
     var onOpen: (UUID) -> Void
 
     private var key: String {
-        model.saveKey + "|\(cornerGuides)|\(paperTexture)"
+        model.saveKey + "|\(cornerGuides)|\(paperTexture)|\(paperSize.rawValue)"
     }
 
     var body: some View {
@@ -32,7 +33,7 @@ struct SheetPreviewView: View {
                     return true
                 }
                 .overlay(alignment: .bottom) {
-                    Text("Click a print to edit it")
+                    Text("\(paperSize.displayName) · Click a print to edit it")
                         .font(.caption)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)
@@ -46,7 +47,7 @@ struct SheetPreviewView: View {
             guard !Task.isCancelled else { return }
             // Low-resolution previews keep this fast; printing uses the full photos.
             let items = model.session.items.map(model.previewItem)
-            let newPages = Paginator.pages(for: items)
+            let newPages = Paginator.pages(for: items, paper: paperSize.paper)
             var options = Prefs.renderOptions(forPrint: false)
             options.dpi = 120
             let data = await Task.detached(priority: .userInitiated) {

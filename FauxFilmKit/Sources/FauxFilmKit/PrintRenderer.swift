@@ -46,29 +46,48 @@ public struct PrintItem: Identifiable, Sendable {
     /// How strongly the look is applied, 0…1.
     public var lookStrength: Double = PrintItem.defaultLookStrength
     public var copies: Int
+    /// Photo prints only: print landscape instead of portrait. Ignored for instant film,
+    /// whose orientation is fixed.
+    public var landscape: Bool
 
     public static let defaultLookStrength: Double = 0.8
 
-    public init(id: UUID = UUID(), image: CGImage, format: FilmFormat, crop: Crop = Crop(), look: FilmLook = .none, copies: Int = 1) {
+    public init(id: UUID = UUID(), image: CGImage, format: FilmFormat, crop: Crop = Crop(), look: FilmLook = .none,
+                copies: Int = 1, landscape: Bool = false) {
         self.id = id
         self.image = image
         self.format = format
         self.crop = crop
         self.look = look
         self.copies = copies
+        self.landscape = landscape
+    }
+
+    /// True when this prints as a landscape photo print. Never for instant film or square prints.
+    public var isLandscape: Bool { format.hasOrientation && landscape }
+
+    /// The card as it is printed: the format's spec, turned for landscape photo prints.
+    public var spec: FrameSpec { isLandscape ? format.spec.turned : format.spec }
+
+    /// True when the photo, after its quarter turns, is wider than tall.
+    public var photoIsLandscape: Bool {
+        let w = image.width, h = image.height
+        return crop.quarterTurns % 2 == 0 ? w > h : h > w
     }
 }
 
 public enum PrintRenderer {
     /// The cropped, looked picture at `options.dpi` for the format's picture window.
+    /// For frameless prints the picture also covers `pictureBleed(for:options:)` on every side.
     public static func renderPicture(_ item: PrintItem, options: RenderOptions) -> CGImage {
-        let spec = item.format.spec
-        let pxW = max(1, Int((spec.pictureRect.width / 25.4 * options.dpi).rounded()))
-        let pxH = max(1, Int((spec.pictureRect.height / 25.4 * options.dpi).rounded()))
+        let spec = item.spec
+        let bleed = pictureBleed(for: spec, options: options)
+        let pxW = max(1, Int(((spec.pictureRect.width + 2 * bleed) / 25.4 * options.dpi).rounded()))
+        let pxH = max(1, Int(((spec.pictureRect.height + 2 * bleed) / 25.4 * options.dpi).rounded()))
 
         let rotated = ImageOps.rotated(item.image, quarterTurns: item.crop.quarterTurns)
         let size = CGSize(width: rotated.width, height: rotated.height)
-        let src = item.crop.sourceRect(imageSize: size, targetAspect: spec.pictureAspect).integral
+        let src = sourceRect(crop: item.crop, imageSize: size, spec: spec, bleed: bleed).integral
             .intersection(CGRect(origin: .zero, size: size))
         let cropped = rotated.cropping(to: src) ?? rotated
 
@@ -87,6 +106,24 @@ public enum PrintRenderer {
         return LookProcessor.apply(item.look, strength: item.lookStrength, printBrightness: options.printBrightness, to: opaque)
     }
 
+    /// How far (mm) the picture itself extends past the card edge: the print bleed for
+    /// frameless prints (never more than the crop allows for), 0 for framed cards.
+    public static func pictureBleed(for spec: FrameSpec, options: RenderOptions) -> Double {
+        min(max(options.bleed, 0), spec.pictureBleed)
+    }
+
+    /// The pixel rect of the (rotated) photo shown in the picture window plus `bleed` mm on
+    /// every side. The crop always covers the full `spec.pictureBleed`, so the area inside the
+    /// cut line is the same whether or not bleed is drawn.
+    public static func sourceRect(crop: Crop, imageSize: CGSize, spec: FrameSpec, bleed: Double) -> CGRect {
+        let outer = crop.sourceRect(imageSize: imageSize, targetAspect: spec.cropAspect)
+        let full = spec.pictureBleed
+        guard full > 0, outer.width > 0 else { return outer }
+        let pixelsPerMM = Double(outer.width) / (spec.pictureRect.width + 2 * full)
+        let inset = (full - min(max(bleed, 0), full)) * pixelsPerMM
+        return outer.insetBy(dx: inset, dy: inset)
+    }
+
     /// Draws one card. `ctx` uses PDF-style points with y up; `cardRectPt` is the card's
     /// footprint (already swapped when `rotated`). A rotated card is turned 90° clockwise,
     /// which puts the thick bottom strip on the left.
@@ -94,7 +131,7 @@ public enum PrintRenderer {
         _ item: PrintItem, picture: CGImage, in ctx: CGContext,
         cardRectPt: CGRect, rotated: Bool, options: RenderOptions
     ) {
-        let spec = item.format.spec
+        let spec = item.spec
         let w = MM.toPoints(spec.cardWidth), h = MM.toPoints(spec.cardHeight)
 
         ctx.saveGState()
@@ -103,6 +140,20 @@ public enum PrintRenderer {
 
         // Local coords: upright card centred on the origin, y up.
         let card = CGRect(x: -w / 2, y: -h / 2, width: w, height: h)
+
+        if spec.isFrameless {
+            // Standard photo print: the picture is the whole card, plus its bleed. Square corners.
+            let b = MM.toPoints(pictureBleed(for: spec, options: options))
+            let area = card.insetBy(dx: -b, dy: -b)
+            ctx.saveGState()
+            ctx.clip(to: area)
+            ctx.interpolationQuality = .high
+            ctx.draw(picture, in: area)
+            ctx.restoreGState()
+            ctx.restoreGState()
+            return
+        }
+
         let pr = spec.pictureRect
         let window = CGRect(
             x: card.minX + MM.toPoints(pr.minX),
@@ -165,7 +216,7 @@ public enum PrintRenderer {
 
     /// The whole card as a bitmap, for on-screen previews.
     public static func cardImage(_ item: PrintItem, options: RenderOptions, pixelsPerMM: Double) -> CGImage {
-        let spec = item.format.spec
+        let spec = item.spec
         let pxW = max(1, Int((spec.cardWidth * pixelsPerMM).rounded()))
         let pxH = max(1, Int((spec.cardHeight * pixelsPerMM).rounded()))
         var pictureOptions = options
