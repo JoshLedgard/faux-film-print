@@ -29,6 +29,8 @@ targets:
       path: FauxFilm/Info.plist
       properties:
         CFBundleDisplayName: Faux Film Print
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         LSApplicationCategoryType: public.app-category.photography
         NSHumanReadableCopyright: ""
     settings:
