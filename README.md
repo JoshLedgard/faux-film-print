@@ -3,8 +3,9 @@
 <p align="center"><img src="docs/icons/real-faux.svg" width="128" alt="Faux Film Print icon"></p>
 
 A macOS app that turns photos into true-size instant-film prints (Instax Mini, Instax Square,
-Instax Wide, Polaroid Square) and lays them out on US Letter sheets with crop marks for
-cutting by hand, so they sit alongside real instant prints.
+Instax Wide, Polaroid Square) or frameless standard photo prints (Wallet, 3.5 × 5, 4 × 6, 5 × 7,
+8 × 10, Square 4 × 4) and lays them out on US Letter or A4 sheets with crop marks for
+cutting by hand, so they sit alongside real prints.
 
 **[⬇ Download the latest release](https://github.com/JoshLedgard/faux-film-print/releases/latest)**: macOS 15 or later, signed and notarized by Apple.
 
@@ -25,7 +26,7 @@ cutting by hand, so they sit alongside real instant prints.
 
 ## Download
 
-Get `Faux-Film-Print-1.0.zip` from the [Releases page](https://github.com/JoshLedgard/faux-film-print/releases),
+Get `Faux-Film-Print-1.1.zip` from the [Releases page](https://github.com/JoshLedgard/faux-film-print/releases),
 unzip it, and drag **Faux Film Print** into Applications.
 
 ## Using it

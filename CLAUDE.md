@@ -64,6 +64,19 @@ carry `get-task-allow`; `release.sh` sets `CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO
 
 Add an entry here for each release, newest first, and use the same text for the GitHub release.
 
+### 1.1 (2026-11-23)
+
+Print standard photos too, not just instant film.
+
+- Frameless photo prints at true size: Wallet (2.5 × 3.5 in), 3.5 × 5, 4 × 6, 5 × 7, 8 × 10 and Square 4 × 4
+- One size menu with Instant Film and Photo Prints sections
+- Portrait or landscape for photo prints, picked automatically from each photo
+- The picture bleeds slightly past the cut line, so hand cuts don't leave white edges
+- New Paper setting: US Letter or A4
+- Smoother dragging in the crop editor
+
+**Install:** unzip and drag to Applications. Signed and notarized by Apple. Requires macOS 15+.
+
 ### 1.0 (2026-11-08)
 
 Turn your photos into true-size instant-film prints and print them on US Letter sheets to cut out by hand.
